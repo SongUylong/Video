@@ -17,22 +17,16 @@ SUCCESS_GREEN = "#28a745"
 FAIL_RED = "#dc3545"
 WARN_COLOR = "#ffc107"
 
-# --- Sound Effect Paths (Update these with your actual sound files) ---
-SOUND_DIR = "sounds/"  # Create this directory and add your sounds
+# --- Sound Effect Paths (Using only available sounds from docker/sounds) ---
+SOUND_DIR = "sounds/"
 
-# Recommended sounds to download:
-SOUND_WHOOSH = f"{SOUND_DIR}whoosh.wav"           # Transitions, movements
-SOUND_POP = f"{SOUND_DIR}pop.wav"                 # Objects appearing
-SOUND_SUCCESS = f"{SOUND_DIR}success.wav"         # Checkmarks, success
-SOUND_ERROR = f"{SOUND_DIR}error.wav"             # X marks, failures
-SOUND_TECH_BEEP = f"{SOUND_DIR}tech_beep.wav"    # Tech-related actions
-SOUND_MAGIC = f"{SOUND_DIR}magic_chime.wav"      # Logo, special moments
-SOUND_WRITE = f"{SOUND_DIR}write.wav"            # Text writing
-SOUND_BUILD = f"{SOUND_DIR}build.wav"            # Building/creating
-SOUND_UPLOAD = f"{SOUND_DIR}upload.wav"          # Data transfer up
-SOUND_DOWNLOAD = f"{SOUND_DIR}download.wav"      # Data transfer down
-SOUND_AMBIENT = f"{SOUND_DIR}ambient_tech.mp3"   # Background music
-SOUND_CLICK = f"{SOUND_DIR}click.wav"            # Small UI interactions
+# Available sounds mapped to animation events:
+SOUND_CLICK = f"{SOUND_DIR}Computer_Mouse_Click_Universfield.mp3"  # Small UI interactions, clicks
+SOUND_ERROR = f"{SOUND_DIR}Error_04_Universfield.mp3"              # X marks, failures
+SOUND_TRANSITION = f"{SOUND_DIR}transition_short.mp3"              # Scene transitions (Trimmed to 2s)
+SOUND_WRITE = f"{SOUND_DIR}typing_short.mp3"                       # Text writing (Trimmed to 1.5s)
+SOUND_BUILD = f"{SOUND_DIR}build.mp3"                              # Building/creating
+# Note: Some sound files appear corrupted (very small file size), using available ones strategically
 
 class DockerTikTokWithAudio(Scene):
     def construct(self):
@@ -51,8 +45,7 @@ class DockerTikTokWithAudio(Scene):
                 return VGroup(box, txt)
             return box
 
-        # --- Background Music (Optional - Quiet ambient tech music) ---
-        add_sound_safe(SOUND_AMBIENT, gain=-25)  # Very quiet background
+        # --- No Background Music (using only available sound effects) ---
         
         # --- Background ---
         background = Rectangle(
@@ -88,20 +81,24 @@ class DockerTikTokWithAudio(Scene):
             particles.add(particle)
         particles.move_to(ORIGIN)
         
-        # Docker logo
-        docker_logo = SVGMobject("docker.svg").scale(0.1).set_z_index(10)
+        # Docker logo (loading from SVG file)
+        try:
+            docker_logo = SVGMobject("docker.svg").scale(0.1).set_z_index(10)
+        except:
+            # Fallback to emoji if SVG loading fails
+            docker_logo = Text("🐳", font_size=80).set_z_index(10)
         docker_logo.move_to(ORIGIN)
         
-        # 🔊 SOUND: Magical appearance
-        add_sound_safe(SOUND_MAGIC, gain=-8)
+        # 🔊 SOUND: Transition for intro
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
         self.play(
             *[FadeIn(p, scale=0.3) for p in particles],
             lag_ratio=0.05,
             run_time=0.8
         )
         
-        # 🔊 SOUND: Whoosh as particles rotate
-        add_sound_safe(SOUND_WHOOSH, gain=-10)
+        # 🔊 SOUND: Build as particles rotate and logo appears
+        add_sound_safe(SOUND_BUILD, gain=-8)
         self.play(
             Rotate(particles, angle=PI, about_point=ORIGIN),
             particles.animate.scale(0.3).set_opacity(0),
@@ -111,8 +108,8 @@ class DockerTikTokWithAudio(Scene):
         )
         self.remove(particles)
         
-        # 🔊 SOUND: Pop for pulse
-        add_sound_safe(SOUND_POP, gain=-8)
+        # 🔊 SOUND: Click for pulse
+        add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(
             docker_logo.animate.scale(1.15),
             run_time=0.3,
@@ -123,8 +120,8 @@ class DockerTikTokWithAudio(Scene):
         glow_ring = Circle(radius=1.5, color=DOCKER_BLUE, stroke_width=4, fill_opacity=0)
         glow_ring.move_to(docker_logo.get_center())
         
-        # 🔊 SOUND: Tech beep for glow ring
-        add_sound_safe(SOUND_TECH_BEEP, gain=-12)
+        # 🔊 SOUND: Click for glow ring
+        add_sound_safe(SOUND_CLICK, gain=-12)
         self.play(Create(glow_ring), run_time=0.5)
         self.play(
             glow_ring.animate.scale(2).set_opacity(0),
@@ -144,6 +141,8 @@ class DockerTikTokWithAudio(Scene):
             run_time=0.6
         )
         
+        # 🔊 SOUND: Click for floating animation
+        add_sound_safe(SOUND_CLICK, gain=-14)
         self.play(
             docker_logo.animate.shift(UP * 0.15),
             title_text.animate.shift(UP * 0.15),
@@ -153,17 +152,20 @@ class DockerTikTokWithAudio(Scene):
         
         self.wait(0.5)
         
-        # 🔊 SOUND: Whoosh for transition
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
+        # 🔊 SOUND: Transition for scene change
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
         self.play(
             FadeOut(title_text, shift=DOWN*0.5),
-            docker_logo.animate.scale(0.4).to_corner(UL).shift(DOWN*0.5 + RIGHT*0.2),
+            docker_logo.animate.scale(0.4).to_edge(UP, buff=0.3).shift(RIGHT*0.2),
             run_time=0.8
         )
 
         # =========================================
         # SCENE 2: Docker Containers
         # =========================================
+        
+        # 🔊 SOUND: Transition for new scene
+        add_sound_safe(SOUND_TRANSITION, gain=-15)
         
         container_title = Text("Docker Containers", font_size=36, weight=BOLD).to_edge(UP, buff=2.5)
         # 🔊 SOUND: Write for title
@@ -181,11 +183,11 @@ class DockerTikTokWithAudio(Scene):
         docker_engine = make_layer(4.5, 1.0, DOCKER_BLUE, "Docker Engine")
         
         container_box1 = RoundedRectangle(corner_radius=0.1, width=1.8, height=1.2, color=DOCKER_BLUE, fill_opacity=0.8, stroke_color=WHITE, stroke_width=3)
-        container_lbl1 = Text("App 1\\n+Libs", font_size=14, color=WHITE).move_to(container_box1.get_center())
+        container_lbl1 = Text("App 1\n+Libs", font_size=14, color=WHITE).move_to(container_box1.get_center())
         container_grp1 = VGroup(container_box1, container_lbl1)
         
         container_box2 = RoundedRectangle(corner_radius=0.1, width=1.8, height=1.2, color=SUCCESS_GREEN, fill_opacity=0.8, stroke_color=WHITE, stroke_width=3)
-        container_lbl2 = Text("App 2\\n+Libs", font_size=14, color=WHITE).move_to(container_box2.get_center())
+        container_lbl2 = Text("App 2\n+Libs", font_size=14, color=WHITE).move_to(container_box2.get_center())
         container_grp2 = VGroup(container_box2, container_lbl2)
         
         dk_host_os.next_to(dk_infra, UP, buff=0.1)
@@ -197,20 +199,20 @@ class DockerTikTokWithAudio(Scene):
         dk_stack_full.move_to(DOWN * 0.5)
 
         # 🔊 SOUND: Build sounds for infrastructure
-        add_sound_safe(SOUND_BUILD, gain=-12)
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(GrowFromCenter(dk_infra), run_time=0.5)
-        add_sound_safe(SOUND_BUILD, gain=-12)
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(GrowFromEdge(dk_host_os, DOWN), run_time=0.5)
         
-        # 🔊 SOUND: Tech beep for Docker Engine
-        add_sound_safe(SOUND_TECH_BEEP, gain=-10)
+        # 🔊 SOUND: Build for Docker Engine
+        add_sound_safe(SOUND_BUILD, gain=-8)
         self.play(GrowFromEdge(docker_engine, DOWN), run_time=0.6, rate_func=smooth)
         self.wait(0.3)
         
-        # 🔊 SOUND: Pop for each container
-        add_sound_safe(SOUND_POP, gain=-8)
+        # 🔊 SOUND: Click for each container
+        add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(GrowFromCenter(container_grp1), run_time=0.5)
-        add_sound_safe(SOUND_POP, gain=-8)
+        add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(GrowFromCenter(container_grp2), run_time=0.5)
         
         # 🔊 SOUND: Click for pulse
@@ -224,16 +226,16 @@ class DockerTikTokWithAudio(Scene):
         lightweight_text = Text("Lightweight & Isolated!", color=SUCCESS_GREEN, font_size=28, weight=BOLD)
         lightweight_text.next_to(dk_stack_full, DOWN, buff=0.8)
         
-        # 🔊 SOUND: Success chime
-        add_sound_safe(SOUND_SUCCESS, gain=-10)
+        # 🔊 SOUND: Click for success text
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(
             FadeIn(lightweight_text, shift=UP*0.2),
             run_time=0.8
         )
         self.wait(2)
 
-        # 🔊 SOUND: Whoosh for transition
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
+        # 🔊 SOUND: Transition for scene change
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
         self.play(
             *[FadeOut(mob) for mob in [dk_stack_full, container_title, lightweight_text]],
              docker_logo.animate.set_opacity(0.3) 
@@ -242,8 +244,11 @@ class DockerTikTokWithAudio(Scene):
         # ==============================================
         # SCENE 3: Solving "Works on My Machine"
         # ==============================================
+        
+        # 🔊 SOUND: Transition for new scene
+        add_sound_safe(SOUND_TRANSITION, gain=-15)
 
-        problem_text = Text("Problem: \\"Works on my machine!\\"", font_size=32, color=FAIL_RED).to_edge(UP, buff=2.5)
+        problem_text = Text('Problem: "Works on my machine!"', font_size=32, color=FAIL_RED).to_edge(UP, buff=2.5)
         # 🔊 SOUND: Write for problem text
         add_sound_safe(SOUND_WRITE, gain=-10)
         self.play(Write(problem_text))
@@ -264,24 +269,24 @@ class DockerTikTokWithAudio(Scene):
         app_code_txt = Text("Code", font_size=16).move_to(app_code_box)
         app_group = VGroup(app_code_box, app_code_txt).move_to(laptop_screen.get_center())
 
-        # 🔊 SOUND: Pop for devices appearing
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for devices appearing
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(
             FadeIn(laptop, shift=LEFT), FadeIn(laptop_label),
             FadeIn(server, shift=RIGHT), FadeIn(server_label)
         )
-        add_sound_safe(SOUND_POP, gain=-8)
+        add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(GrowFromCenter(app_group))
         
-        # 🔊 SOUND: Success beep
+        # 🔊 SOUND: Click for checkmark
         check_mark = Text("✔", color=SUCCESS_GREEN, font_size=40).next_to(laptop, UP)
-        add_sound_safe(SOUND_SUCCESS, gain=-12)
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(check_mark, shift=UP*0.2))
         self.wait(0.5)
         self.play(FadeOut(check_mark))
 
-        # 🔊 SOUND: Whoosh for movement
-        add_sound_safe(SOUND_WHOOSH, gain=-10)
+        # 🔊 SOUND: Build for code movement
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(
             app_group.animate.move_to(server_box.get_center()), 
             path_arc=-1, run_time=1.2
@@ -299,8 +304,8 @@ class DockerTikTokWithAudio(Scene):
 
         # Solution with Docker
         docker_fix_text = Text("Solution: Dockerize It!", font_size=32, color=DOCKER_BLUE).move_to(problem_text)
-        # 🔊 SOUND: Magic chime for solution
-        add_sound_safe(SOUND_MAGIC, gain=-10)
+        # 🔊 SOUND: Transition for solution
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
         self.play(Transform(problem_text, docker_fix_text))
 
         app_group_2 = VGroup(
@@ -312,37 +317,37 @@ class DockerTikTokWithAudio(Scene):
         deps_txt = Text("+ Deps & Config", font_size=14, color=WARN_COLOR).next_to(container_wrap, DOWN, buff=0.1)
         container_full = VGroup(container_wrap, app_group_2, deps_txt)
 
-        # 🔊 SOUND: Pop for code
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for code
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(app_group_2))
         
-        # 🔊 SOUND: Tech beep for containerization
-        add_sound_safe(SOUND_TECH_BEEP, gain=-10)
+        # 🔊 SOUND: Build for containerization
+        add_sound_safe(SOUND_BUILD, gain=-8)
         self.play(
             DrawBorderThenFill(container_wrap), 
             Write(deps_txt),
             run_time=1
         )
         
-        # 🔊 SOUND: Whoosh for movement
-        add_sound_safe(SOUND_WHOOSH, gain=-10)
+        # 🔊 SOUND: Build for movement
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(
             container_full.animate.move_to(server_box.get_center()), 
             path_arc=-1,
             run_time=1.2
         )
 
-        # 🔊 SOUND: Success!
+        # 🔊 SOUND: Click for success!
         success_check = Text("✔ Works!", color=SUCCESS_GREEN, font_size=36, weight=BOLD).next_to(server, UP)
-        add_sound_safe(SOUND_SUCCESS, gain=-8)
+        add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(
             FadeIn(success_check, shift=UP*0.3), 
             container_wrap.animate.set_color(SUCCESS_GREEN).set_fill(opacity=0.6)
         )
         self.wait(1.5)
 
-        # 🔊 SOUND: Transition whoosh
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
+        # 🔊 SOUND: Transition for scene change
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
         self.play(
              *[FadeOut(mob) for mob in self.mobjects if mob != docker_logo and mob != background and mob != grid]
         )
@@ -351,6 +356,9 @@ class DockerTikTokWithAudio(Scene):
         # ==============================================
         # SCENE 4: Key Concepts Explained
         # ==============================================
+        
+        # 🔊 SOUND: Transition for new scene
+        add_sound_safe(SOUND_TRANSITION, gain=-15)
         
         concepts_title = Text("Key Concepts", font_size=40, color=DOCKER_BLUE, weight=BOLD).to_edge(UP, buff=2.5)
         # 🔊 SOUND: Write title
@@ -374,23 +382,23 @@ class DockerTikTokWithAudio(Scene):
         dockerfile_visual = VGroup(doc_box, doc_icon, doc_desc, code_snippet)
         dockerfile_visual.move_to(ORIGIN)
         
-        # 🔊 SOUND: Pop for label
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for label
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeOut(concepts_title), FadeIn(concept1_label, shift=DOWN*0.3))
         
-        # 🔊 SOUND: Tech beep for document
-        add_sound_safe(SOUND_TECH_BEEP, gain=-10)
+        # 🔊 SOUND: Build for document
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(DrawBorderThenFill(doc_box), FadeIn(doc_icon))
         self.play(Write(doc_desc))
         
-        # 🔊 SOUND: Click for each code line
+        # 🔊 SOUND: Write for code lines
+        add_sound_safe(SOUND_WRITE, gain=-12)
         for line in code_snippet:
-            add_sound_safe(SOUND_CLICK, gain=-12)
             self.play(FadeIn(line, shift=UP*0.2), run_time=0.3)
         self.wait(1.2)
         
         # 🔊 SOUND: Transition
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
+        add_sound_safe(SOUND_TRANSITION, gain=-14)
         self.play(FadeOut(concept1_label), FadeOut(dockerfile_visual))
         
         # --- Concept 2: Image ---
@@ -409,23 +417,23 @@ class DockerTikTokWithAudio(Scene):
         image_visual = VGroup(image_outer, blueprint_icon, image_desc, layer_group)
         image_visual.move_to(ORIGIN)
         
-        # 🔊 SOUND: Pop for label
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for label
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(concept2_label, shift=DOWN*0.3))
         
-        # 🔊 SOUND: Tech beep for image
-        add_sound_safe(SOUND_TECH_BEEP, gain=-10)
+        # 🔊 SOUND: Build for image
+        add_sound_safe(SOUND_BUILD, gain=-8)
         self.play(DrawBorderThenFill(image_outer), FadeIn(blueprint_icon))
         self.play(Write(image_desc))
         
-        # 🔊 SOUND: Build sound for each layer
+        # 🔊 SOUND: Build sound for layers
+        add_sound_safe(SOUND_BUILD, gain=-10)
         for layer in layer_group:
-            add_sound_safe(SOUND_BUILD, gain=-14)
             self.play(GrowFromEdge(layer, UP), run_time=0.4)
         self.wait(1.2)
         
         # 🔊 SOUND: Transition
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
+        add_sound_safe(SOUND_TRANSITION, gain=-14)
         self.play(FadeOut(concept2_label), FadeOut(image_visual))
         
         # --- Concept 3: Registry / Docker Hub ---
@@ -442,29 +450,35 @@ class DockerTikTokWithAudio(Scene):
         registry_visual = VGroup(registry_box, cloud_big, registry_desc, mini_image1, mini_image2, mini_image3)
         registry_visual.move_to(ORIGIN)
         
-        # 🔊 SOUND: Pop for label
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for label
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(concept3_label, shift=DOWN*0.3))
         
-        # 🔊 SOUND: Whoosh for cloud
-        add_sound_safe(SOUND_WHOOSH, gain=-10)
+        # 🔊 SOUND: Build for cloud
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(DrawBorderThenFill(registry_box))
         self.play(FadeIn(cloud_big, scale=0.5), cloud_big.animate.scale(1.2), run_time=0.6)
         self.play(cloud_big.animate.scale(1/1.2), run_time=0.2)
         self.play(Write(registry_desc))
         
-        # 🔊 SOUND: Pop for each mini image
-        add_sound_safe(SOUND_POP, gain=-14)
+        # 🔊 SOUND: Click for mini images
+        add_sound_safe(SOUND_CLICK, gain=-12)
         self.play(FadeIn(mini_image1), FadeIn(mini_image2), FadeIn(mini_image3), lag_ratio=0.2)
         self.wait(1.2)
         
         # 🔊 SOUND: Transition
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
+        add_sound_safe(SOUND_TRANSITION, gain=-14)
         self.play(FadeOut(concept3_label), FadeOut(registry_visual))
 
         # ==============================================
         # SCENE 5: Complete Docker Flow
         # ==============================================
+        
+        # 🔊 SOUND: Transition for new scene
+        add_sound_safe(SOUND_TRANSITION, gain=-15)
+        
+        # Hide the Docker logo from this point onward
+        self.play(FadeOut(docker_logo), run_time=0.5)
         
         flow_title = Text("How Docker Works", font_size=38, color=DOCKER_BLUE, weight=BOLD)
         flow_title.move_to(UP*6.5)
@@ -476,79 +490,79 @@ class DockerTikTokWithAudio(Scene):
         # ===== PART 1: Build Phase =====
         
         # Step 1: Write Dockerfile
-        step1_label = Text("1. Write", font_size=20, color=WARN_COLOR, weight=BOLD)
-        step1_label.move_to(UP*5.2)
+        step1_label = Text("1. Write", font_size=18, color=WARN_COLOR, weight=BOLD)
+        step1_label.move_to(UP*5.5)
         
         dockerfile_box = RoundedRectangle(
-            corner_radius=0.15, width=3.8, height=2.2, 
+            corner_radius=0.15, width=3.2, height=1.8, 
             color=WHITE, fill_opacity=0.95, stroke_width=3
         )
-        dockerfile_box.move_to(UP*3.5)
+        dockerfile_box.move_to(UP*4.0)
         
-        dockerfile_header = Text("Dockerfile", font_size=16, color=BLACK, weight=BOLD)
-        dockerfile_header.move_to(dockerfile_box.get_top() + DOWN*0.25)
+        dockerfile_header = Text("Dockerfile", font_size=14, color=BLACK, weight=BOLD)
+        dockerfile_header.move_to(dockerfile_box.get_top() + DOWN*0.2)
         
         code_lines = VGroup(
-            Text("FROM node:18", font_size=13, color=DOCKER_BLUE),
-            Text("COPY . /app", font_size=13, color=SUCCESS_GREEN),
-            Text("RUN npm install", font_size=13, color=WARN_COLOR),
-            Text("CMD [\\"npm\\",\\"start\\"]", font_size=13, color=RED),
-        ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
-        code_lines.move_to(dockerfile_box.get_center() + DOWN*0.2)
+            Text("FROM node:18", font_size=11, color=DOCKER_BLUE),
+            Text("COPY . /app", font_size=11, color=SUCCESS_GREEN),
+            Text("RUN npm install", font_size=11, color=WARN_COLOR),
+            Text('CMD ["npm","start"]', font_size=11, color=RED),
+        ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
+        code_lines.move_to(dockerfile_box.get_center() + DOWN*0.15)
         
         dockerfile_group = VGroup(dockerfile_box, dockerfile_header, code_lines)
         
-        # 🔊 SOUND: Pop for step
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for step
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(step1_label, shift=DOWN*0.2))
         
-        # 🔊 SOUND: Tech beep for document
-        add_sound_safe(SOUND_TECH_BEEP, gain=-10)
+        # 🔊 SOUND: Build for document
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(DrawBorderThenFill(dockerfile_box), Write(dockerfile_header))
         
-        # 🔊 SOUND: Click for each line
+        # 🔊 SOUND: Write for code lines
+        add_sound_safe(SOUND_WRITE, gain=-10)
         for line in code_lines:
-            add_sound_safe(SOUND_CLICK, gain=-14)
             self.play(FadeIn(line, shift=RIGHT*0.1), run_time=0.2)
         self.wait(0.3)
         
         # Step 2: Build
-        step2_label = Text("2. Build", font_size=20, color=WARN_COLOR, weight=BOLD)
-        step2_label.move_to(UP*1.8)
-        
+        image_box = RoundedRectangle(
+            corner_radius=0.15, width=3.0, height=1.2,
+            color=DOCKER_BLUE, fill_opacity=0.9, stroke_width=3
+        )
+        image_box.move_to(UP*1.6)
+
         build_arrow = Arrow(
-            start=dockerfile_box.get_bottom() + DOWN*0.15,
-            end=dockerfile_box.get_bottom() + DOWN*1.0,
+            start=dockerfile_box.get_bottom() + DOWN*0.1,
+            end=image_box.get_top() + UP*0.1,
             buff=0, color=DOCKER_BLUE, stroke_width=4
         )
         
-        image_box = RoundedRectangle(
-            corner_radius=0.15, width=3.5, height=1.5,
-            color=DOCKER_BLUE, fill_opacity=0.9, stroke_width=3
-        )
-        image_box.move_to(UP*0.3)
+        step2_label = Text("2. Build", font_size=18, color=WARN_COLOR, weight=BOLD)
+        step2_label.next_to(build_arrow, LEFT, buff=0.3)
         
-        image_icon = Text("📦", font_size=30).move_to(image_box.get_left() + RIGHT*0.6)
-        image_name = Text("myapp:v1", font_size=15, color=WHITE, weight=BOLD)
-        image_name.move_to(image_box.get_center() + RIGHT*0.3)
+        image_icon = Text("📦", font_size=26).move_to(image_box.get_left() + RIGHT*0.5)
+        image_name = Text("myapp:v1", font_size=13, color=WHITE, weight=BOLD)
+        image_name.move_to(image_box.get_center() + RIGHT*0.25)
         
         image_group = VGroup(image_box, image_icon, image_name)
         
-        # 🔊 SOUND: Pop for step
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for step
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(step2_label, shift=DOWN*0.2))
         
-        # 🔊 SOUND: Whoosh for arrow
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
-        self.play(GrowArrow(build_arrow), run_time=0.5)
+        # 🔊 SOUND: Click for arrow
+        add_sound_safe(SOUND_CLICK, gain=-12)
+        self.play(GrowArrow(build_arrow), run_time=0.4)
         
         # 🔊 SOUND: Build sound
-        add_sound_safe(SOUND_BUILD, gain=-10)
+        add_sound_safe(SOUND_BUILD, gain=-8)
         self.play(DrawBorderThenFill(image_box), FadeIn(image_icon))
         self.play(Write(image_name))
         
-        # 🔊 SOUND: Success for build complete
-        add_sound_safe(SOUND_SUCCESS, gain=-12)
+        # 🔊 SOUND: Click for build complete
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(
             image_box.animate.set_stroke(color=SUCCESS_GREEN, width=5),
             run_time=0.25, rate_func=there_and_back
@@ -556,51 +570,51 @@ class DockerTikTokWithAudio(Scene):
         self.wait(0.3)
         
         # Step 3: Push
-        step3_label = Text("3. Push", font_size=20, color=WARN_COLOR, weight=BOLD)
-        step3_label.move_to(DOWN*1.0)
-        
+        registry_box = RoundedRectangle(
+            corner_radius=0.2, width=3.0, height=1.4,
+            color=GRAY_B, fill_opacity=0.95, stroke_width=3
+        )
+        registry_box.move_to(DOWN*0.7)
+
         push_arrow = Arrow(
-            start=image_box.get_bottom() + DOWN*0.15,
-            end=image_box.get_bottom() + DOWN*1.0,
+            start=image_box.get_bottom() + DOWN*0.1,
+            end=registry_box.get_top() + UP*0.1,
             buff=0, color=SUCCESS_GREEN, stroke_width=4
         )
         
-        registry_box = RoundedRectangle(
-            corner_radius=0.2, width=3.5, height=1.6,
-            color=GRAY_B, fill_opacity=0.95, stroke_width=3
-        )
-        registry_box.move_to(DOWN*2.8)
+        step3_label = Text("3. Push", font_size=18, color=WARN_COLOR, weight=BOLD)
+        step3_label.next_to(push_arrow, LEFT, buff=0.3)
         
-        cloud_icon = Text("☁️", font_size=40).move_to(registry_box.get_center() + UP*0.1)
-        hub_label = Text("Docker Hub", font_size=14, color=BLACK, weight=BOLD)
-        hub_label.move_to(registry_box.get_center() + DOWN*0.5)
+        cloud_icon = Text("☁️", font_size=35).move_to(registry_box.get_center() + UP*0.1)
+        hub_label = Text("Docker Hub", font_size=12, color=BLACK, weight=BOLD)
+        hub_label.move_to(registry_box.get_center() + DOWN*0.4)
         
         registry_group = VGroup(registry_box, cloud_icon, hub_label)
         
-        # 🔊 SOUND: Pop for step
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for step
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(step3_label, shift=DOWN*0.2))
         
-        # 🔊 SOUND: Whoosh for arrow
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
-        self.play(GrowArrow(push_arrow), run_time=0.5)
+        # 🔊 SOUND: Click for arrow
+        add_sound_safe(SOUND_CLICK, gain=-12)
+        self.play(GrowArrow(push_arrow), run_time=0.4)
         
-        # 🔊 SOUND: Upload sound
-        add_sound_safe(SOUND_UPLOAD, gain=-10)
+        # 🔊 SOUND: Build for upload
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(DrawBorderThenFill(registry_box), FadeIn(cloud_icon), Write(hub_label))
         
-        # Data flow particles with upload sounds
+        # Data flow particles with click sounds
         flow_line = Line(image_box.get_bottom(), registry_box.get_top())
         for i in range(3):
             dot = Dot(color=SUCCESS_GREEN, radius=0.1).move_to(flow_line.get_start())
             if i == 0:
-                add_sound_safe(SOUND_UPLOAD, gain=-14)
+                add_sound_safe(SOUND_CLICK, gain=-14)
             self.play(MoveAlongPath(dot, flow_line, run_time=0.4), FadeOut(dot, run_time=0.1))
         
-        # 🔊 SOUND: Success checkmark
+        # 🔊 SOUND: Click for checkmark
         check = Text("✓", font_size=22, color=SUCCESS_GREEN, weight=BOLD)
         check.move_to(registry_box.get_corner(UR) + LEFT*0.3 + DOWN*0.25)
-        add_sound_safe(SOUND_SUCCESS, gain=-12)
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(check, scale=0.5), run_time=0.3)
         
         self.wait(0.5)
@@ -611,49 +625,52 @@ class DockerTikTokWithAudio(Scene):
             image_group, step3_label, push_arrow
         )
         
-        # 🔊 SOUND: Whoosh for transition
-        add_sound_safe(SOUND_WHOOSH, gain=-10)
+        # 🔊 SOUND: Transition for phase change
+        add_sound_safe(SOUND_TRANSITION, gain=-10)
         self.play(
             FadeOut(build_phase, shift=LEFT*3),
-            registry_group.animate.move_to(UP*4.5).scale(0.9),
-            check.animate.move_to(UP*4.5 + RIGHT*1.4 + DOWN*0.2).scale(0.9),
+            registry_group.animate.move_to(UP*5.0).scale(0.85),
+            check.animate.move_to(UP*5.0 + RIGHT*1.2 + DOWN*0.15).scale(0.85),
             run_time=0.7
         )
         
         # ===== PART 2: Deploy Phase =====
         
-        # Step 4: Pull
-        step4_label = Text("4. Pull", font_size=20, color=WARN_COLOR, weight=BOLD)
-        step4_label.move_to(UP*2.8)
+        # 🔊 SOUND: Transition for deploy phase
+        add_sound_safe(SOUND_TRANSITION, gain=-15)
         
+        # Step 4: Pull
+        server_box = RoundedRectangle(
+            corner_radius=0.12, width=3.0, height=1.2,
+            color=GRAY_D, fill_opacity=0.9, stroke_width=3
+        )
+        server_box.move_to(UP*2.8)
+
         pull_arrow = Arrow(
-            start=registry_group.get_bottom() + DOWN*0.15,
-            end=registry_group.get_bottom() + DOWN*1.2,
+            start=registry_group.get_bottom() + DOWN*0.1,
+            end=server_box.get_top() + UP*0.1,
             buff=0, color=DOCKER_BLUE, stroke_width=4
         )
         
-        server_box = RoundedRectangle(
-            corner_radius=0.12, width=3.5, height=1.4,
-            color=GRAY_D, fill_opacity=0.9, stroke_width=3
-        )
-        server_box.move_to(UP*1.5)
+        step4_label = Text("4. Pull", font_size=18, color=WARN_COLOR, weight=BOLD)
+        step4_label.next_to(pull_arrow, RIGHT, buff=0.3)
         
-        server_icon = Text("🖥️", font_size=30).move_to(server_box.get_left() + RIGHT*0.6)
-        server_label = Text("Server", font_size=14, color=WHITE)
-        server_label.move_to(server_box.get_center() + RIGHT*0.3)
+        server_icon = Text("🖥️", font_size=26).move_to(server_box.get_left() + RIGHT*0.5)
+        server_label = Text("Server", font_size=12, color=WHITE)
+        server_label.move_to(server_box.get_center() + RIGHT*0.25)
         
         server_group = VGroup(server_box, server_icon, server_label)
         
-        # 🔊 SOUND: Pop for step
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for step
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(step4_label, shift=DOWN*0.2))
         
-        # 🔊 SOUND: Whoosh for arrow
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
-        self.play(GrowArrow(pull_arrow), run_time=0.5)
+        # 🔊 SOUND: Click for arrow
+        add_sound_safe(SOUND_CLICK, gain=-12)
+        self.play(GrowArrow(pull_arrow), run_time=0.4)
         
-        # 🔊 SOUND: Download sound
-        add_sound_safe(SOUND_DOWNLOAD, gain=-10)
+        # 🔊 SOUND: Build for download
+        add_sound_safe(SOUND_BUILD, gain=-10)
         self.play(DrawBorderThenFill(server_box), FadeIn(server_icon), Write(server_label))
         
         # Download particles
@@ -661,69 +678,70 @@ class DockerTikTokWithAudio(Scene):
         for i in range(3):
             dot = Dot(color=DOCKER_BLUE, radius=0.1).move_to(download_line.get_start())
             if i == 0:
-                add_sound_safe(SOUND_DOWNLOAD, gain=-14)
+                add_sound_safe(SOUND_CLICK, gain=-14)
             self.play(MoveAlongPath(dot, download_line, run_time=0.4), FadeOut(dot, run_time=0.1))
         
         self.wait(0.3)
         
         # Step 5: Run
-        step5_label = Text("5. Run", font_size=20, color=WARN_COLOR, weight=BOLD)
-        step5_label.move_to(DOWN*0.2)
-        
+        container_box = RoundedRectangle(
+            corner_radius=0.15, width=3.5, height=2.0,
+            color=SUCCESS_GREEN, fill_opacity=0.9, stroke_width=4
+        )
+        container_box.move_to(DOWN*0.2)
+
         run_arrow = Arrow(
-            start=server_box.get_bottom() + DOWN*0.15,
-            end=server_box.get_bottom() + DOWN*1.0,
+            start=server_box.get_bottom() + DOWN*0.1,
+            end=container_box.get_top() + UP*0.1,
             buff=0, color=SUCCESS_GREEN, stroke_width=4
         )
         
-        container_box = RoundedRectangle(
-            corner_radius=0.15, width=3.8, height=2.2,
-            color=SUCCESS_GREEN, fill_opacity=0.9, stroke_width=4
-        )
-        container_box.move_to(DOWN*2.5)
+        step5_label = Text("5. Run", font_size=18, color=WARN_COLOR, weight=BOLD)
+        step5_label.next_to(run_arrow, RIGHT, buff=0.3)
         
-        whale = Text("🐳", font_size=50).move_to(container_box.get_center() + UP*0.15)
-        running_text = Text("Running", font_size=18, color=WHITE, weight=BOLD)
+        whale = Text("🐳", font_size=45).move_to(container_box.get_center() + UP*0.1)
+        running_text = Text("Running", font_size=16, color=WHITE, weight=BOLD)
         running_text.move_to(container_box.get_center() + DOWN*0.6)
         
         container_group = VGroup(container_box, whale, running_text)
         
-        # 🔊 SOUND: Pop for step
-        add_sound_safe(SOUND_POP, gain=-10)
+        # 🔊 SOUND: Click for step
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(FadeIn(step5_label, shift=DOWN*0.2))
         
-        # 🔊 SOUND: Whoosh for arrow
-        add_sound_safe(SOUND_WHOOSH, gain=-12)
-        self.play(GrowArrow(run_arrow), run_time=0.5)
+        # 🔊 SOUND: Click for arrow
+        add_sound_safe(SOUND_CLICK, gain=-12)
+        self.play(GrowArrow(run_arrow), run_time=0.4)
         
         # 🔊 SOUND: Build/Run sound
-        add_sound_safe(SOUND_BUILD, gain=-10)
+        add_sound_safe(SOUND_BUILD, gain=-8)
         self.play(DrawBorderThenFill(container_box))
         
-        # 🔊 SOUND: Magic for container start
-        add_sound_safe(SOUND_MAGIC, gain=-10)
+        # 🔊 SOUND: Transition for container start
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
         self.play(FadeIn(whale, scale=0.5), whale.animate.scale(1.1), run_time=0.5)
         self.play(whale.animate.scale(1/1.1), run_time=0.2)
         self.play(Write(running_text))
         
-        # Pulse rings with tech beeps
+        # Pulse rings with click sounds
         for i in range(2):
             pulse = Circle(radius=0.5, color=WHITE, stroke_width=3, fill_opacity=0)
             pulse.move_to(whale.get_center())
             self.add(pulse)
             if i == 0:
-                add_sound_safe(SOUND_TECH_BEEP, gain=-14)
+                add_sound_safe(SOUND_CLICK, gain=-14)
             self.play(pulse.animate.scale(2).set_opacity(0), run_time=0.6)
             self.remove(pulse)
         
-        # 🔊 SOUND: Success!
-        success = Text("✓ Live!", font_size=28, color=SUCCESS_GREEN, weight=BOLD)
-        success.move_to(DOWN*4.5)
-        add_sound_safe(SOUND_SUCCESS, gain=-8)
+        # 🔊 SOUND: Click for success!
+        success = Text("✓ Live!", font_size=26, color=SUCCESS_GREEN, weight=BOLD)
+        success.move_to(DOWN*2.5)
+        add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(FadeIn(success, scale=0.5), success.animate.scale(1.1), run_time=0.4)
         self.play(success.animate.scale(1/1.1), run_time=0.15)
         
-        # Final container glow
+        # Final container glow with click
+        add_sound_safe(SOUND_CLICK, gain=-10)
         self.play(
             container_box.animate.set_stroke(color=WHITE, width=6),
             run_time=0.25, rate_func=there_and_back
@@ -731,7 +749,66 @@ class DockerTikTokWithAudio(Scene):
         
         self.wait(2)
 
-        # Final Fadeout
-        # 🔊 SOUND: Final whoosh
-        add_sound_safe(SOUND_WHOOSH, gain=-10)
-        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        # 🔊 SOUND: Transition for scene change
+        add_sound_safe(SOUND_TRANSITION, gain=-10)
+        self.play(*[FadeOut(mob) for mob in self.mobjects if mob != background and mob != grid])
+        
+        # ==============================================
+        # ENDING: Animated Logo
+        # ==============================================
+        
+        # 🔊 SOUND: Transition for ending
+        add_sound_safe(SOUND_TRANSITION, gain=-12)
+        
+        # Load the ending logo
+        try:
+            ending_logo = SVGMobject("potato.svg").scale(1.5)
+        except:
+            # Fallback to text if SVG doesn't load
+            ending_logo = Text("Thanks for Watching!", font_size=60, color=DOCKER_BLUE, weight=BOLD)
+        
+        ending_logo.move_to(ORIGIN)
+        
+        # Fade in the logo
+        add_sound_safe(SOUND_CLICK, gain=-10)
+        self.play(FadeIn(ending_logo, scale=0.8), run_time=0.8)
+        self.wait(0.3)
+        
+        # Shake animation - wiggle left and right
+        # 🔊 SOUND: Click for shake
+        add_sound_safe(SOUND_CLICK, gain=-8)
+        for _ in range(3):
+            self.play(
+                ending_logo.animate.shift(LEFT*0.1).rotate(angle=-0.05),
+                run_time=0.08,
+                rate_func=linear
+            )
+            self.play(
+                ending_logo.animate.shift(RIGHT*0.2).rotate(angle=0.1),
+                run_time=0.08,
+                rate_func=linear
+            )
+            self.play(
+                ending_logo.animate.shift(LEFT*0.1).rotate(angle=-0.05),
+                run_time=0.08,
+                rate_func=linear
+            )
+        
+        self.wait(0.3)
+        
+        # Scale up to full screen
+        # 🔊 SOUND: Build for scale up
+        add_sound_safe(SOUND_BUILD, gain=-8)
+        self.play(
+            ending_logo.animate.scale(8).set_opacity(0.9),
+            run_time=2.0,
+            rate_func=rush_into
+        )
+        
+        # Hold for a moment
+        self.wait(0.5)
+        
+        # Final fadeout
+        # 🔊 SOUND: Transition for final fadeout
+        add_sound_safe(SOUND_TRANSITION, gain=-10)
+        self.play(FadeOut(ending_logo), FadeOut(background), FadeOut(grid), run_time=1.0)
