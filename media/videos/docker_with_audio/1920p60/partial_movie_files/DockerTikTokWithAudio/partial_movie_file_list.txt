@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/usong/code/video/media/videos/docker_with_audio/1920p60/partial_movie_files/DockerTikTokWithAudio/2040185254_2753385274_1528495601.mp4'
+file 'file:/home/usong/code/video/media/videos/docker_with_audio/1920p60/partial_movie_files/DockerTikTokWithAudio/3898890344_736324107_465251967.mp4'
+file 'file:/home/usong/code/video/media/videos/docker_with_audio/1920p60/partial_movie_files/DockerTikTokWithAudio/3898890344_1884071830_1380777602.mp4'
+file 'file:/home/usong/code/video/media/videos/docker_with_audio/1920p60/partial_movie_files/DockerTikTokWithAudio/3898890344_8786877_3088771381.mp4'
+file 'file:/home/usong/code/video/media/videos/docker_with_audio/1920p60/partial_movie_files/DockerTikTokWithAudio/3898890344_1712438708_1162316372.mp4'
+file 'file:/home/usong/code/video/media/videos/docker_with_audio/1920p60/partial_movie_files/DockerTikTokWithAudio/3898890344_2971126867_605919690.mp4'

@@ -1,0 +1,249 @@
+Manim Community v0.19.1
+
+[12/29/25 23:56:14] WARNING  Unsupported element      svg_mobject.py:291
+                             type: <class                               
+                             'svgelements.svgelements                   
+                             .Image'>                                   
+                    INFO     Automatically      scene_file_writer.py:383
+                             converted                                  
+                             docker/sounds/tran                         
+                             sition.mp3 to .wav                         
+                    DEBUG    Hashing ...                  hashing.py:360
+                    DEBUG    Hashing done in 0.088463 s.  hashing.py:372
+                    DEBUG    Hash generated :             hashing.py:375
+                             2040185254_2753385274_152849               
+                             5601                                       
+                    DEBUG    List of the first few cairo_renderer.py:103
+                             animation hashes of                        
+                             the scene:                                 
+                             ['2040185254_27533852                      
+                             74_1528495601']                            
+Animation 0: FadeIn(Dot), etc.:   0%|          | 0/48 [00:00<?, ?it/s]Animation 0: FadeIn(Dot), etc.:  25%|██▌       | 12/48 [00:00<00:00, 111.21it/s]Animation 0: FadeIn(Dot), etc.:  56%|█████▋    | 27/48 [00:00<00:00, 127.28it/s]Animation 0: FadeIn(Dot), etc.:  88%|████████▊ | 42/48 [00:00<00:00, 134.68it/s]                                                                                [12/29/25 23:56:15] INFO     Animation 0 :      scene_file_writer.py:590
+                             Partial movie file                         
+                             written in                                 
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/204                         
+                             0185254_2753385274                         
+                             _1528495601.mp4'                           
+                    INFO     Automatically      scene_file_writer.py:383
+                             converted                                  
+                             docker/sounds/buil                         
+                             d.mp3 to .wav                              
+                    DEBUG    Hashing ...                  hashing.py:360
+                    DEBUG    Hashing done in 0.074904 s.  hashing.py:372
+                    DEBUG    Hash generated :             hashing.py:375
+                             3898890344_736324107_4652519               
+                             67                                         
+                    DEBUG    List of the first few cairo_renderer.py:103
+                             animation hashes of                        
+                             the scene:                                 
+                             ['2040185254_27533852                      
+                             74_1528495601',                            
+                             '3898890344_736324107                      
+                             _465251967']                               
+Animation 1: Rotate(VGroup of 12 submobjects), etc.:   0%|          | 0/90 [00:00<?, ?it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  14%|█▍        | 13/90 [00:00<00:00, 124.78it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  29%|██▉       | 26/90 [00:00<00:00, 108.36it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  41%|████      | 37/90 [00:00<00:00, 102.08it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  53%|█████▎    | 48/90 [00:00<00:00, 103.93it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  67%|██████▋   | 60/90 [00:00<00:00, 108.67it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  81%|████████  | 73/90 [00:00<00:00, 113.78it/s]Animation 1: Rotate(VGroup of 12 submobjects), etc.:  94%|█████████▍| 85/90 [00:00<00:00, 113.96it/s]                                                                                                     [12/29/25 23:56:17] INFO     Animation 1 :      scene_file_writer.py:590
+                             Partial movie file                         
+                             written in                                 
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_736324107_                         
+                             465251967.mp4'                             
+                    INFO     Automatically      scene_file_writer.py:383
+                             converted                                  
+                             docker/sounds/clic                         
+                             k.mp3 to .wav                              
+                    DEBUG    Hashing ...                  hashing.py:360
+                    DEBUG    Hashing done in 0.067397 s.  hashing.py:372
+                    DEBUG    Hash generated :             hashing.py:375
+                             3898890344_1884071830_138077               
+                             7602                                       
+                    DEBUG    List of the first few cairo_renderer.py:103
+                             animation hashes of                        
+                             the scene:                                 
+                             ['2040185254_27533852                      
+                             74_1528495601',                            
+                             '3898890344_736324107                      
+                             _465251967',                               
+                             '3898890344_188407183                      
+                             0_1380777602']                             
+Animation 2: _MethodAnimation(Text('🐳')):   0%|          | 0/18 [00:00<?, ?it/s]                                                                                                     INFO     Animation 2 :      scene_file_writer.py:590
+                             Partial movie file                         
+                             written in                                 
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_1884071830                         
+                             _1380777602.mp4'                           
+                    INFO     Automatically      scene_file_writer.py:383
+                             converted                                  
+                             docker/sounds/clic                         
+                             k.mp3 to .wav                              
+                    DEBUG    Hashing ...                  hashing.py:360
+                    DEBUG    Hashing done in 0.052268 s.  hashing.py:372
+                    DEBUG    Hash generated :             hashing.py:375
+                             3898890344_8786877_308877138               
+                             1                                          
+                    DEBUG    List of the first few cairo_renderer.py:103
+                             animation hashes of                        
+                             the scene:                                 
+                             ['2040185254_27533852                      
+                             74_1528495601',                            
+                             '3898890344_736324107                      
+                             _465251967',                               
+                             '3898890344_188407183                      
+                             0_1380777602',                             
+                             '3898890344_8786877_3                      
+                             088771381']                                
+Animation 3: Create(Circle):   0%|          | 0/30 [00:00<?, ?it/s]Animation 3: Create(Circle):  67%|██████▋   | 20/30 [00:00<00:00, 194.79it/s]                                                                             [12/29/25 23:56:18] INFO     Animation 3 :      scene_file_writer.py:590
+                             Partial movie file                         
+                             written in                                 
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_8786877_30                         
+                             88771381.mp4'                              
+                    DEBUG    Hashing ...                  hashing.py:360
+                    DEBUG    Hashing done in 0.079641 s.  hashing.py:372
+                    DEBUG    Hash generated :             hashing.py:375
+                             3898890344_1712438708_116231               
+                             6372                                       
+                    DEBUG    List of the first few cairo_renderer.py:103
+                             animation hashes of                        
+                             the scene:                                 
+                             ['2040185254_27533852                      
+                             74_1528495601',                            
+                             '3898890344_736324107                      
+                             _465251967',                               
+                             '3898890344_188407183                      
+                             0_1380777602',                             
+                             '3898890344_8786877_3                      
+                             088771381',                                
+                             '3898890344_171243870                      
+                             8_1162316372']                             
+Animation 4: _MethodAnimation(Circle):   0%|          | 0/48 [00:00<?, ?it/s]Animation 4: _MethodAnimation(Circle):  42%|████▏     | 20/48 [00:00<00:00, 192.13it/s]Animation 4: _MethodAnimation(Circle):  83%|████████▎ | 40/48 [00:00<00:00, 143.36it/s]                                                                                       [12/29/25 23:56:19] INFO     Animation 4 :      scene_file_writer.py:590
+                             Partial movie file                         
+                             written in                                 
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_1712438708                         
+                             _1162316372.mp4'                           
+                    INFO     Automatically      scene_file_writer.py:383
+                             converted                                  
+                             docker/sounds/typi                         
+                             ng_short.mp3 to                            
+                             .wav                                       
+                    DEBUG    Hashing ...                  hashing.py:360
+                    DEBUG    Hashing done in 0.096274 s.  hashing.py:372
+                    DEBUG    Hash generated :             hashing.py:375
+                             3898890344_2971126867_605919               
+                             690                                        
+                    DEBUG    List of the first few cairo_renderer.py:103
+                             animation hashes of                        
+                             the scene:                                 
+                             ['2040185254_27533852                      
+                             74_1528495601',                            
+                             '3898890344_736324107                      
+                             _465251967',                               
+                             '3898890344_188407183                      
+                             0_1380777602',                             
+                             '3898890344_8786877_3                      
+                             088771381',                                
+                             '3898890344_171243870                      
+                             8_1162316372']                             
+Animation 5: FadeIn(Text('Docker')):   0%|          | 0/36 [00:00<?, ?it/s]Animation 5: FadeIn(Text('Docker')):  44%|████▍     | 16/36 [00:00<00:00, 146.49it/s]Animation 5: FadeIn(Text('Docker')):  86%|████████▌ | 31/36 [00:00<00:00, 118.67it/s]                                                                                     [12/29/25 23:56:20] INFO     Animation 5 :      scene_file_writer.py:590
+                             Partial movie file                         
+                             written in                                 
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_2971126867                         
+                             _605919690.mp4'                            
+                    INFO     Automatically      scene_file_writer.py:383
+                             converted                                  
+                             docker/sounds/clic                         
+                             k.mp3 to .wav                              
+                    INFO     Combining to Movie scene_file_writer.py:740
+                             file.                                      
+                    DEBUG    Partial movie      scene_file_writer.py:624
+                             files to combine                           
+                             (6 files):                                 
+                             ['/home/usong/code                         
+                             /video/media/video                         
+                             s/docker_with_audi                         
+                             o/1920p60/partial_                         
+                             movie_files/Docker                         
+                             TikTokWithAudio/20                         
+                             40185254_275338527                         
+                             4_1528495601.mp4',                         
+                                                                        
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_736324107_                         
+                             465251967.mp4',                            
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_1884071830                         
+                             _1380777602.mp4',                          
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_8786877_30                         
+                             88771381.mp4',                             
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/partial_m                         
+                             ovie_files/DockerT                         
+                             ikTokWithAudio/389                         
+                             8890344_1712438708                         
+                             _1162316372.mp4']                          
+                    WARNING  Some options were  scene_file_writer.py:802
+                             not used:                                  
+                             {'shortest': '1',                          
+                             'metadata':                                
+                             'comment=Rendered                          
+                             with Manim                                 
+                             Community                                  
+                             v0.19.1'}                                  
+                    INFO                        scene_file_writer.py:887
+                             File ready at                              
+                             '/home/usong/code/                         
+                             video/media/videos                         
+                             /docker_with_audio                         
+                             /1920p60/DockerTik                         
+                             TokWithAudio.mp4'                          
+                                                                        
+                    INFO     Rendered DockerTikTokWithAudio scene.py:279
+                             Played 6 animations                        

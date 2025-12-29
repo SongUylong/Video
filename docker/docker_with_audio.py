@@ -1,4 +1,5 @@
 from manim import *
+import os
 
 # --- Configuration for TikTok Format (9:16 aspect ratio, 1080x1920) ---
 config.frame_width = 9
@@ -18,12 +19,12 @@ FAIL_RED = "#dc3545"
 WARN_COLOR = "#ffc107"
 
 # --- Sound Effect Paths (Using only available sounds from docker/sounds) ---
-SOUND_DIR = "sounds/"
+SOUND_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sounds/")
 
 # Available sounds mapped to animation events:
-SOUND_CLICK = f"{SOUND_DIR}Computer_Mouse_Click_Universfield.mp3"  # Small UI interactions, clicks
+SOUND_CLICK = f"{SOUND_DIR}click.mp3"  # Small UI interactions, clicks
 SOUND_ERROR = f"{SOUND_DIR}Error_04_Universfield.mp3"              # X marks, failures
-SOUND_TRANSITION = f"{SOUND_DIR}transition_short.mp3"              # Scene transitions (Trimmed to 2s)
+SOUND_TRANSITION = f"{SOUND_DIR}transition.mp3"              # Scene transitions (Trimmed to 2s)
 SOUND_WRITE = f"{SOUND_DIR}typing_short.mp3"                       # Text writing (Trimmed to 1.5s)
 SOUND_BUILD = f"{SOUND_DIR}build.mp3"                              # Building/creating
 # Note: Some sound files appear corrupted (very small file size), using available ones strategically
@@ -32,10 +33,11 @@ class DockerTikTokWithAudio(Scene):
     def construct(self):
         # Helper to safely add sounds (won't crash if file doesn't exist)
         def add_sound_safe(sound_path, gain=-10):
-            try:
-                self.add_sound(sound_path, gain=gain)
-            except:
-                pass  # Sound file doesn't exist yet - no problem
+            # Verify file exists first
+            if not os.path.exists(sound_path):
+                print(f"Warning: Sound file not found: {sound_path}")
+                return
+            self.add_sound(sound_path, gain=gain)
         
         # --- Helpers ---
         def get_std_box(color=DOCKER_BLUE, text_str="", width=1.5, height=1.5):
@@ -164,8 +166,7 @@ class DockerTikTokWithAudio(Scene):
         # SCENE 2: Docker Containers
         # =========================================
         
-        # 🔊 SOUND: Transition for new scene
-        add_sound_safe(SOUND_TRANSITION, gain=-15)
+
         
         container_title = Text("Docker Containers", font_size=36, weight=BOLD).to_edge(UP, buff=2.5)
         # 🔊 SOUND: Write for title
@@ -245,8 +246,7 @@ class DockerTikTokWithAudio(Scene):
         # SCENE 3: Solving "Works on My Machine"
         # ==============================================
         
-        # 🔊 SOUND: Transition for new scene
-        add_sound_safe(SOUND_TRANSITION, gain=-15)
+
 
         problem_text = Text('Problem: "Works on my machine!"', font_size=32, color=FAIL_RED).to_edge(UP, buff=2.5)
         # 🔊 SOUND: Write for problem text
@@ -357,8 +357,7 @@ class DockerTikTokWithAudio(Scene):
         # SCENE 4: Key Concepts Explained
         # ==============================================
         
-        # 🔊 SOUND: Transition for new scene
-        add_sound_safe(SOUND_TRANSITION, gain=-15)
+
         
         concepts_title = Text("Key Concepts", font_size=40, color=DOCKER_BLUE, weight=BOLD).to_edge(UP, buff=2.5)
         # 🔊 SOUND: Write title
@@ -474,8 +473,7 @@ class DockerTikTokWithAudio(Scene):
         # SCENE 5: Complete Docker Flow
         # ==============================================
         
-        # 🔊 SOUND: Transition for new scene
-        add_sound_safe(SOUND_TRANSITION, gain=-15)
+
         
         # Hide the Docker logo from this point onward
         self.play(FadeOut(docker_logo), run_time=0.5)
@@ -757,8 +755,7 @@ class DockerTikTokWithAudio(Scene):
         # ENDING: Animated Logo
         # ==============================================
         
-        # 🔊 SOUND: Transition for ending
-        add_sound_safe(SOUND_TRANSITION, gain=-12)
+
         
         # Load the ending logo
         try:
