@@ -274,9 +274,18 @@ class LaravelDockerStory(Scene):
         self.wait(1.5)
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        self.play(
+            FadeOut(backend_dev),
+            FadeOut(setup_text),
+            FadeOut(working_box),
+            FadeOut(tech_stack),
+            FadeOut(checkmark),
+            FadeOut(frontend_dev_return),
+            FadeOut(mobile_dev_return),
+            FadeOut(arrow_to_nuxt),
+            FadeOut(arrow_to_flutter),
+            FadeOut(setup_warning)
+        )
         
         # ==========================
         # SCENE 4: Dockerfile Explanation Part 1 (28-40s)
@@ -443,9 +452,10 @@ class LaravelDockerStory(Scene):
         self.wait(0.5)
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         # ==========================
         # SCENE 4B: Dockerfile Explanation Part 2 (40-50s)
@@ -612,9 +622,10 @@ class LaravelDockerStory(Scene):
         self.wait(0.5)
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         # ==========================
         # SCENE 5: docker-compose Explanation (50-60s)
@@ -703,9 +714,10 @@ class LaravelDockerStory(Scene):
         self.wait(1.5)
         
         add_sound_safe(SOUND_TRANSITION, gain=-12)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         # ==========================
         # SCENE 5B: docker-compose.yml Services (60-75s) - VSCode Style
@@ -927,9 +939,10 @@ class LaravelDockerStory(Scene):
         self.wait(0.8)
         
         add_sound_safe(SOUND_TRANSITION, gain=-12)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         # ==========================
         # SCENE 6: docker-compose up command (75-85s)
@@ -987,18 +1000,20 @@ class LaravelDockerStory(Scene):
         self.wait(2)
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         # ==========================
         # SCENE 7: Running from Flutter & Nuxt.js API Access (85-100s)
         # ==========================
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         api_access_title = Text("API Access", font_size=36, color=DOCKER_BLUE, weight=BOLD)
         api_access_title.to_edge(UP, buff=1.5)
@@ -1205,9 +1220,10 @@ class LaravelDockerStory(Scene):
         # ==========================
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         success_title = Text("Same Environment for Everyone!", font_size=28, color=SUCCESS_GREEN, weight=BOLD)
         success_title.to_edge(UP, buff=1.5)
@@ -1338,9 +1354,10 @@ class LaravelDockerStory(Scene):
         # ==========================
         
         add_sound_safe(SOUND_TRANSITION, gain=-10)
-        fadeouts = [FadeOut(m) for m in self.mobjects if m != background and m != grid]
-        if fadeouts:
-            self.play(*fadeouts)
+        # Safely fade out all objects except background and grid
+        to_remove = [m for m in self.mobjects if m != background and m != grid]
+        if to_remove:
+            self.play(*[FadeOut(m) for m in to_remove])
         
         # Ending logo
         ending_logo = load_asset("potato.svg", scale=1.5)

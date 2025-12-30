@@ -85,7 +85,7 @@ class DockerTikTokWithAudio(Scene):
         
         # Docker logo (loading from SVG file)
         try:
-            docker_logo = SVGMobject("docker.svg").scale(0.1).set_z_index(10)
+            docker_logo = SVGMobject("asset/docker.svg").scale(0.1).set_z_index(10)
         except:
             # Fallback to emoji if SVG loading fails
             docker_logo = Text("🐳", font_size=80).set_z_index(10)
@@ -479,7 +479,7 @@ class DockerTikTokWithAudio(Scene):
         self.play(FadeOut(docker_logo), run_time=0.5)
         
         flow_title = Text("How Docker Works", font_size=38, color=DOCKER_BLUE, weight=BOLD)
-        flow_title.move_to(UP*6.5)
+        flow_title.move_to(ORIGIN + UP*6.5)  # Center-aligned horizontally
         # 🔊 SOUND: Write title
         add_sound_safe(SOUND_WRITE, gain=-10)
         self.play(Write(flow_title))
@@ -489,13 +489,13 @@ class DockerTikTokWithAudio(Scene):
         
         # Step 1: Write Dockerfile
         step1_label = Text("1. Write", font_size=18, color=WARN_COLOR, weight=BOLD)
-        step1_label.move_to(UP*5.5)
+        step1_label.move_to(ORIGIN + UP*5.5)  # Center-aligned
         
         dockerfile_box = RoundedRectangle(
             corner_radius=0.15, width=3.2, height=1.8, 
             color=WHITE, fill_opacity=0.95, stroke_width=3
         )
-        dockerfile_box.move_to(UP*4.0)
+        dockerfile_box.move_to(ORIGIN + UP*4.0)  # Center-aligned
         
         dockerfile_header = Text("Dockerfile", font_size=14, color=BLACK, weight=BOLD)
         dockerfile_header.move_to(dockerfile_box.get_top() + DOWN*0.2)
@@ -505,7 +505,7 @@ class DockerTikTokWithAudio(Scene):
             Text("COPY . /app", font_size=11, color=SUCCESS_GREEN),
             Text("RUN npm install", font_size=11, color=WARN_COLOR),
             Text('CMD ["npm","start"]', font_size=11, color=RED),
-        ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
+        ).arrange(DOWN, buff=0.1, aligned_edge=ORIGIN)  # Center-aligned
         code_lines.move_to(dockerfile_box.get_center() + DOWN*0.15)
         
         dockerfile_group = VGroup(dockerfile_box, dockerfile_header, code_lines)
@@ -529,7 +529,7 @@ class DockerTikTokWithAudio(Scene):
             corner_radius=0.15, width=3.0, height=1.2,
             color=DOCKER_BLUE, fill_opacity=0.9, stroke_width=3
         )
-        image_box.move_to(UP*1.6)
+        image_box.move_to(ORIGIN + UP*1.6)  # Center-aligned
 
         build_arrow = Arrow(
             start=dockerfile_box.get_bottom() + DOWN*0.1,
@@ -542,7 +542,7 @@ class DockerTikTokWithAudio(Scene):
         
         image_icon = Text("📦", font_size=26).move_to(image_box.get_left() + RIGHT*0.5)
         image_name = Text("myapp:v1", font_size=13, color=WHITE, weight=BOLD)
-        image_name.move_to(image_box.get_center() + RIGHT*0.25)
+        image_name.move_to(image_box.get_center())  # Center-aligned within box
         
         image_group = VGroup(image_box, image_icon, image_name)
         
@@ -572,7 +572,7 @@ class DockerTikTokWithAudio(Scene):
             corner_radius=0.2, width=3.0, height=1.4,
             color=GRAY_B, fill_opacity=0.95, stroke_width=3
         )
-        registry_box.move_to(DOWN*0.7)
+        registry_box.move_to(ORIGIN + DOWN*0.7)  # Center-aligned
 
         push_arrow = Arrow(
             start=image_box.get_bottom() + DOWN*0.1,
@@ -642,7 +642,7 @@ class DockerTikTokWithAudio(Scene):
             corner_radius=0.12, width=3.0, height=1.2,
             color=GRAY_D, fill_opacity=0.9, stroke_width=3
         )
-        server_box.move_to(UP*2.8)
+        server_box.move_to(ORIGIN + UP*2.8)  # Center-aligned
 
         pull_arrow = Arrow(
             start=registry_group.get_bottom() + DOWN*0.1,
@@ -655,7 +655,7 @@ class DockerTikTokWithAudio(Scene):
         
         server_icon = Text("🖥️", font_size=26).move_to(server_box.get_left() + RIGHT*0.5)
         server_label = Text("Server", font_size=12, color=WHITE)
-        server_label.move_to(server_box.get_center() + RIGHT*0.25)
+        server_label.move_to(server_box.get_center())  # Center-aligned within box
         
         server_group = VGroup(server_box, server_icon, server_label)
         
@@ -686,7 +686,7 @@ class DockerTikTokWithAudio(Scene):
             corner_radius=0.15, width=3.5, height=2.0,
             color=SUCCESS_GREEN, fill_opacity=0.9, stroke_width=4
         )
-        container_box.move_to(DOWN*0.2)
+        container_box.move_to(ORIGIN + DOWN*0.2)  # Center-aligned
 
         run_arrow = Arrow(
             start=server_box.get_bottom() + DOWN*0.1,
@@ -733,7 +733,7 @@ class DockerTikTokWithAudio(Scene):
         
         # 🔊 SOUND: Click for success!
         success = Text("✓ Live!", font_size=26, color=SUCCESS_GREEN, weight=BOLD)
-        success.move_to(DOWN*2.5)
+        success.move_to(ORIGIN + DOWN*2.5)  # Center-aligned
         add_sound_safe(SOUND_CLICK, gain=-8)
         self.play(FadeIn(success, scale=0.5), success.animate.scale(1.1), run_time=0.4)
         self.play(success.animate.scale(1/1.1), run_time=0.15)
@@ -759,7 +759,7 @@ class DockerTikTokWithAudio(Scene):
         
         # Load the ending logo
         try:
-            ending_logo = SVGMobject("potato.svg").scale(1.5)
+            ending_logo = SVGMobject("asset/potato.svg").scale(1.5)
         except:
             # Fallback to text if SVG doesn't load
             ending_logo = Text("Thanks for Watching!", font_size=60, color=DOCKER_BLUE, weight=BOLD)
