@@ -1,0 +1,501 @@
+Manim Community v0.19.1
+
+[12/30/25 23:36:10] INFO     Automatically converted    scene_file_writer.py:383
+                             /Users/eric/code/Video/doc                         
+                             ker/sounds/build.mp3 to                            
+                             .wav                                               
+                    INFO     Animation 0 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             2040185254_1705394309_41724802                     
+                             97)                                                
+Animation 0: FadeIn(SVGMobject):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                          INFO     Animation 1 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2437921574_18106484                     
+                             2)                                                 
+Animation 1: _MethodAnimation(SVGMobject):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                    INFO     Animation 2 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_600567556_181064842                     
+                             )                                                  
+Animation 2: _MethodAnimation(SVGMobject):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                    INFO     Animation 3 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3394500337_27320993                     
+                             49)                                                
+                    INFO     Animation 4 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_79138419_365219298)                     
+Animation 4: _MethodAnimation(SVGMobject):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                    INFO     Animation 5 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1289195865_20267037                     
+                             25)                                                
+Animation 5: Write(Text('DOCKER COMPOSE')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                     INFO     Animation 6 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3000960443_12421580                     
+                             97)                                                
+Animation 6: FadeIn(Text('Multi-Container Made Simple')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                   INFO     Animation 7 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3366045169_46684028                     
+                             7)                                                 
+                    INFO     Animation 8 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1718279153_41709332                     
+                             41)                                                
+Animation 8: FadeOut(SVGMobject), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                 INFO     Animation 9 : Using cached     cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2318836581_25364448                     
+                             02)                                                
+                    INFO     Animation 10 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3463977838_93323154                     
+                             0)                                                 
+Animation 10: Write(Text('WITHOUT COMPOSE:')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 11 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2396007968_29786089                     
+                             10)                                                
+Animation 11: FadeIn(SVGMobject):   0%|          | 0/1 [00:00<?, ?it/s]                                                                       [12/30/25 23:36:11] INFO     Animation 12 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3558951505_10626706                     
+                             86)                                                
+Animation 12: FadeIn(Text('Managing 10+ commands manually')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                       INFO     Animation 13 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3394500337_34803196                     
+                             90)                                                
+                    INFO     Animation 14 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1100370078_40682261                     
+                             51)                                                
+Animation 14: FadeIn(Text('$ docker run mysql -e PASS=...')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                       INFO     Animation 15 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3801586166_69015233                     
+                             3)                                                 
+Animation 15: FadeIn(Text('!')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                          INFO     Animation 16 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3774578863_42764390                     
+                             06)                                                
+                    INFO     Animation 17 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1236984780_41448161                     
+                             8)                                                 
+Animation 17: FadeIn(Text('$ docker run redis -p 6379')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                   INFO     Animation 18 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3774578863_27873834                     
+                             56)                                                
+                    INFO     Animation 19 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2987641083_11284028                     
+                             99)                                                
+Animation 19: FadeIn(Text('$ docker run nginx -v ...')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:12] INFO     Animation 20 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1554632202_24008981                     
+                             11)                                                
+Animation 20: FadeIn(Text('!')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                          INFO     Animation 21 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3774578863_17486791                     
+                             82)                                                
+                    INFO     Animation 22 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3997058923_35796074                     
+                             48)                                                
+Animation 22: FadeIn(Text('$ docker network create app')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                    INFO     Animation 23 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3774578863_17457318                     
+                             84)                                                
+                    INFO     Animation 24 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_324485746_193874744                     
+                             2)                                                 
+Animation 24: FadeIn(Text('$ docker volume create data')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                    INFO     Animation 25 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3485703249_15451093                     
+                             78)                                                
+Animation 25: FadeIn(Text('!')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                      [12/30/25 23:36:13] INFO     Animation 26 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3774578863_17939335                     
+                             66)                                                
+                    INFO     Animation 27 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2053410862_12563251                     
+                             59)                                                
+Animation 27: FadeIn(Text('$ docker network connect...')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                    INFO     Animation 28 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3774578863_36412828                     
+                             26)                                                
+                    INFO     Animation 29 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3394500337_36516535                     
+                             48)                                                
+                    WARNING  Unsupported element type: <class svg_mobject.py:291
+                             'svgelements.svgelements.Image'>                   
+                    WARNING  Unsupported element type: <class svg_mobject.py:291
+                             'svgelements.svgelements.Image'>                   
+                    WARNING  Unsupported element type: <class svg_mobject.py:291
+                             'svgelements.svgelements.Image'>                   
+                    INFO     Animation 30 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2947635853_21191457                     
+                             1)                                                 
+Animation 30: FadeIn(Text('❌ Easy to forget steps')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                            [12/30/25 23:36:14] INFO     Animation 31 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2318836581_15278156                     
+                             99)                                                
+                    INFO     Animation 32 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2517731573_10847652                     
+                             38)                                                
+Animation 32: FadeIn(Text('❌ Hard to reproduce')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                             INFO     Animation 33 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2318836581_26745908                     
+                             68)                                                
+                    INFO     Animation 34 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2100265128_38124412                     
+                             45)                                                
+Animation 34: FadeIn(Text('❌ Team onboarding nightmare')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                 [12/30/25 23:36:15] INFO     Animation 35 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2318836581_30845479                     
+                             74)                                                
+                    INFO     Animation 36 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3790153421_20633851                     
+                             44)                                                
+Animation 36: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:16] INFO     Animation 37 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_439900473_206338514                     
+                             4)                                                 
+Animation 37: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:17] INFO     Animation 38 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2502681779_20633851                     
+                             44)                                                
+Animation 38: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:18] INFO     Animation 39 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2449029325_20633851                     
+                             44)                                                
+Animation 39: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:19] INFO     Animation 40 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1188455816_20633851                     
+                             44)                                                
+Animation 40: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:20] INFO     Animation 41 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_669114704_206338514                     
+                             4)                                                 
+Animation 41: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:21] INFO     Animation 42 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2391796423_20633851                     
+                             44)                                                
+Animation 42: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                  INFO     Animation 43 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1028039276_20633851                     
+                             44)                                                
+Animation 43: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:22] INFO     Animation 44 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1847349262_20633851                     
+                             44)                                                
+Animation 44: _MethodAnimation(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                              [12/30/25 23:36:23] INFO     Animation 45 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2834709167_38664423                     
+                             68)                                                
+[12/30/25 23:36:24] INFO     Animation 46 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3667896690_23348227                     
+                             0)                                                 
+Animation 46: FadeOut(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                         INFO     Animation 47 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3394500337_17348682                     
+                             26)                                                
+                    INFO     Animation 48 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_884752363_643412840                     
+                             )                                                  
+Animation 48: Write(Text('WITH COMPOSE:')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                     INFO     Animation 49 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_439421871_158305942                     
+                             8)                                                 
+Animation 49: FadeIn(SVGMobject):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                           INFO     Animation 50 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2318836581_12421822                     
+                             83)                                                
+[12/30/25 23:36:25] INFO     Animation 51 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3448534645_27213146                     
+                             42)                                                
+Animation 51: FadeIn(VGroup of 5 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 52 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3585970359_26281958                     
+                             99)                                                
+                    INFO     Animation 53 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2385570232_29834661                     
+                             12)                                                
+Animation 53: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 54 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_41752622                     
+                             80)                                                
+                    INFO     Animation 55 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_235992959_365084748                     
+                             9)                                                 
+Animation 55: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 56 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_21236972                     
+                             76)                                                
+                    INFO     Animation 57 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1797491669_25844509                     
+                             01)                                                
+Animation 57: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 58 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_21330486                     
+                             81)                                                
+                    INFO     Animation 59 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2066442895_24434110                     
+                             70)                                                
+Animation 59: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 60 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_27169010                     
+                             25)                                                
+                    INFO     Animation 61 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2492854748_39152938                     
+                             39)                                                
+Animation 61: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                    [12/30/25 23:36:26] INFO     Animation 62 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_41977982                     
+                             15)                                                
+                    INFO     Animation 63 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3877564480_24048331                     
+                             22)                                                
+Animation 63: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 64 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_18861137                     
+                             68)                                                
+                    INFO     Animation 65 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3458599351_11971616                     
+                             75)                                                
+Animation 65: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 66 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_23651491                     
+                             26)                                                
+                    INFO     Animation 67 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_648274996_351356253                     
+                             2)                                                 
+Animation 67: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 68 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_15498809                     
+                             22)                                                
+[12/30/25 23:36:27] INFO     Animation 69 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_52829455_4055830676                     
+                             )                                                  
+Animation 69: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 70 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_41801424                     
+                             55)                                                
+                    INFO     Animation 71 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1645418716_11175442                     
+                             45)                                                
+Animation 71: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 72 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_37641262                     
+                             87)                                                
+                    INFO     Animation 73 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_843653271_164893446                     
+                             6)                                                 
+Animation 73: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 74 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_20776930                     
+                             61)                                                
+[12/30/25 23:36:28] INFO     Animation 75 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3826604669_10743967                     
+                             97)                                                
+Animation 75: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 76 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_29344297                     
+                             43)                                                
+                    INFO     Animation 77 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2674602950_29962417                     
+                             87)                                                
+Animation 77: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 78 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_40117460                     
+                             11)                                                
+                    INFO     Animation 79 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_909236999_246182055                     
+                             )                                                  
+Animation 79: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                    [12/30/25 23:36:29] INFO     Animation 80 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_14334220                     
+                             47)                                                
+                    INFO     Animation 81 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_1162083095_90441822                     
+                             9)                                                 
+Animation 81: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 82 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_26776729                     
+                             95)                                                
+                    INFO     Animation 83 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3826916368_26329482                     
+                             74)                                                
+Animation 83: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                    [12/30/25 23:36:30] INFO     Animation 84 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_20344667                     
+                             31)                                                
+                    INFO     Animation 85 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_879710167_355005267                     
+                             8)                                                 
+Animation 85: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 86 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_12484842                     
+                             54)                                                
+                    INFO     Animation 87 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3519495510_14873463                     
+                             29)                                                
+Animation 87: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                    [12/30/25 23:36:31] INFO     Animation 88 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_41508533                     
+                             29)                                                
+                    INFO     Animation 89 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_627124524_128221791                     
+                             2)                                                 
+Animation 89: FadeIn(VGroup of 2 submobjects):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                        INFO     Animation 90 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2514011427_38430842                     
+                             85)                                                
+                    INFO     Animation 91 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2834709167_40187857                     
+                             19)                                                
+[12/30/25 23:36:32] INFO     Animation 92 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_787274063_390725729                     
+                             7)                                                 
+Animation 92: Create(SurroundingRectangle), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                           INFO     Animation 93 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3932249147_17441520                     
+                             71)                                                
+                    INFO     Animation 94 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2285038132_34674900                     
+                             99)                                                
+Animation 94: Create(SurroundingRectangle), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                       [12/30/25 23:36:33] INFO     Animation 95 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3932249147_20940461                     
+                             61)                                                
+                    INFO     Animation 96 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2744053739_12878291                     
+                             1)                                                 
+Animation 96: Create(SurroundingRectangle), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                           INFO     Animation 97 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2834709167_10920361                     
+                             52)                                                
+                    INFO     Animation 98 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3343425821_18640925                     
+                             27)                                                
+Animation 98: FadeOut(SurroundingRectangle), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                        [12/30/25 23:36:34] INFO     Animation 99 : Using cached    cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2682811761_31880293                     
+                             43)                                                
+Animation 99: Create(RoundedRectangle):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                 INFO     Animation 100 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2329644351_40007042                     
+                             )                                                  
+Animation 100: Write(Text('docker-compose up')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                          INFO     Animation 101 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_415132672_286689025                     
+                             9)                                                 
+Animation 101: FadeIn(Text('ONE COMMAND!')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                  [12/30/25 23:36:35] INFO     Animation 102 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2849962539_12666118                     
+                             73)                                                
+Animation 102: _MethodAnimation(RoundedRectangle), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                                  INFO     Animation 103 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_2950721455_41898284                     
+                             78)                                                
+                    INFO     Animation 104 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_4076562866_30813519                     
+                             91)                                                
+Animation 104: FadeOut(Text('WITH COMPOSE:')), etc.:   0%|          | 0/1 [00:00<?, ?it/s]                                                                                          [12/30/25 23:36:36] INFO     Animation 105 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3394500337_39881229                     
+                             02)                                                
+                    INFO     Animation 106 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_4175350659_35167819                     
+                             79)                                                
+Animation 106: Write(Text('HOW IT WORKS')):   0%|          | 0/1 [00:00<?, ?it/s]                                                                                                     INFO     Animation 107 : Using cached   cairo_renderer.py:94
+                             data (hash :                                       
+                             3898890344_3585970359_12821716                     
+                             46)                                                
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /Users/eric/code/Video/docker/venv/lib/python3.11/site-packages/manim/cli/re │
+│ nder/commands.py:125 in render                                               │
+│                                                                              │
+│   122 │   │   │   try:                                                       │
+│   123 │   │   │   │   with tempconfig({}):                                   │
+│   124 │   │   │   │   │   scene = SceneClass()                               │
+│ ❱ 125 │   │   │   │   │   scene.render()                                     │
+│   126 │   │   │   except Exception:                                          │
+│   127 │   │   │   │   error_console.print_exception()                        │
+│   128 │   │   │   │   sys.exit(1)                                            │
+│                                                                              │
+│ /Users/eric/code/Video/docker/venv/lib/python3.11/site-packages/manim/scene/ │
+│ scene.py:260 in render                                                       │
+│                                                                              │
+│    257 │   │   """                                                           │
+│    258 │   │   self.setup()                                                  │
+│    259 │   │   try:                                                          │
+│ ❱  260 │   │   │   self.construct()                                          │
+│    261 │   │   except EndSceneEarlyException:                                │
+│    262 │   │   │   pass                                                      │
+│    263 │   │   except RerunSceneException:                                   │
+│                                                                              │
+│ /Users/eric/code/Video/docker/docker_compose_scene.py:408 in construct       │
+│                                                                              │
+│   405 │   │   mysql_img = self.load_asset("mysql.png", scale=0.4)            │
+│   406 │   │   mysql_text = Text("MySQL", font_size=15, color=VSCODE_WHITE, w │
+│   407 │   │   mysql_port = Text(":3306", font_size=11, color=VSCODE_GRAY)    │
+│ ❱ 408 │   │   mysql_container = VGroup(mysql_box, mysql_img, mysql_text, mys │
+│   409 │   │   mysql_container.move_to(LEFT * 2.5 + UP * 3)                   │
+│   410 │   │                                                                  │
+│   411 │   │   redis_box = RoundedRectangle(width=2.6, height=1.8, corner_rad │
+│                                                                              │
+│ /Users/eric/code/Video/docker/venv/lib/python3.11/site-packages/manim/mobjec │
+│ t/types/vectorized_mobject.py:2140 in __init__                               │
+│                                                                              │
+│   2137 │   │   self, *vmobjects: VMobject | Iterable[VMobject], **kwargs: An │
+│   2138 │   ) -> None:                                                        │
+│   2139 │   │   super().__init__(**kwargs)                                    │
+│ ❱ 2140 │   │   self.add(*vmobjects)                                          │
+│   2141 │                                                                     │
+│   2142 │   def __repr__(self) -> str:                                        │
+│   2143 │   │   return f"{self.__class__.__name__}({', '.join(str(mob) for mo │
+│                                                                              │
+│ /Users/eric/code/Video/docker/venv/lib/python3.11/site-packages/manim/mobjec │
+│ t/types/vectorized_mobject.py:2255 in add                                    │
+│                                                                              │
+│   2252 │   │   │   elif isinstance(vmobject, Iterable) and isinstance(       │
+│   2253 │   │   │   │   vmobject, (Mobject, OpenGLMobject)                    │
+│   2254 │   │   │   ):                                                        │
+│ ❱ 2255 │   │   │   │   raise TypeError(                                      │
+│   2256 │   │   │   │   │   f"{get_type_error_message(vmobject, (i, 0))} "    │
+│   2257 │   │   │   │   │   "You can try adding this value into a Group inste │
+│   2258 │   │   │   │   )                                                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+TypeError: Only values of type VMobject can be added as submobjects of VGroup, 
+but the value ImageMobject (at index 0 of parameter 1) is of type ImageMobject. 
+You can try adding this value into a Group instead.
