@@ -1,12 +1,30 @@
-import {makeScene2D, Camera, Grid, Line, Node, Rect, Txt, Img} from '@motion-canvas/2d';
-import {Vector2, all, createRef, createSignal, waitFor, easeOutCubic} from '@motion-canvas/core';
+import {
+  makeScene2D,
+  Camera,
+  Grid,
+  Line,
+  Node,
+  Rect,
+  Txt,
+  Img,
+} from "@motion-canvas/2d";
+import {
+  Vector2,
+  all,
+  createRef,
+  createSignal,
+  waitFor,
+  easeOutCubic,
+  easeInOutCubic,
+  easeOutBounce,
+} from "@motion-canvas/core";
 
-const CYAN = '#00d4ff';
-const PURPLE = '#9966ff';
-const ORANGE = '#ff6600';
-const YELLOW = '#ffcc00';
-const WHITE = '#ffffff';
-const DARK = '#0a0a1a';
+const CYAN = "#00d4ff";
+const PURPLE = "#9966ff";
+const ORANGE = "#ff6600";
+const YELLOW = "#ffcc00";
+const WHITE = "#ffffff";
+const DARK = "#0a0a1a";
 
 export default makeScene2D(function* (view) {
   view.fill(DARK);
@@ -15,10 +33,10 @@ export default makeScene2D(function* (view) {
   const titleOpacity = createSignal(0);
 
   const steps = [
-    {label: 'Browser', icon: 'browser'},
-    {label: 'DNS Resolver', icon: 'dns'},
-    {label: 'Root Server', icon: 'cloud-server'},
-    {label: 'IP Returned', icon: 'ip'},
+    { label: "Browser", icon: "browser" },
+    { label: "DNS Resolver", icon: "dns" },
+    { label: "Root Server", icon: "cloud-server" },
+    { label: "IP Returned", icon: "ip" },
   ];
   const stepScales = steps.map(() => createSignal(0));
   const arrowOpacities = [createSignal(0), createSignal(0), createSignal(0)];
@@ -33,130 +51,238 @@ export default makeScene2D(function* (view) {
 
   view.add(
     <Camera ref={camera}>
-      <Grid width={1920} height={1080} spacing={60} stroke={'#1a1a2e'} lineWidth={1} />
+      <Grid
+        width={1080}
+        height={1920}
+        spacing={60}
+        stroke={"#1a1a2e"}
+        lineWidth={1}
+      />
 
-      {/* Title */}
+      {/* Title - BIGGER */}
       <Txt
-        text={'DNS LOOKUP'}
-        fontSize={48}
+        text={"DNS LOOKUP"}
+        fontSize={80}
         fontWeight={800}
         fill={WHITE}
-        y={-350}
+        y={-700}
         opacity={() => titleOpacity()}
         shadowColor={PURPLE}
-        shadowBlur={15}
+        shadowBlur={25}
       />
       <Txt
         text={'"The Internet\'s Phone Book"'}
-        fontSize={22}
+        fontSize={38}
         fontWeight={500}
-        fill={'#88aaff'}
-        y={-305}
+        fill={"#88aaff"}
+        y={-610}
         opacity={() => titleOpacity()}
       />
 
-      {/* Steps on left */}
+      {/* Steps on left - MUCH BIGGER and repositioned */}
       {steps.map((step, i) => (
-        <Node key={`step-${i}`} x={-280} y={-160 + i * 100}>
+        <Node key={`step-${i}`} x={-320} y={-350 + i * 220}>
           <Rect
-            width={() => stepScales[i]() * 150}
-            height={() => stepScales[i]() * 65}
-            fill={'#1a1a3a'}
+            width={() => stepScales[i]() * 360}
+            height={() => stepScales[i]() * 180}
+            fill={"#1a1a3a"}
             stroke={PURPLE}
-            lineWidth={2}
-            radius={10}
+            lineWidth={5}
+            radius={22}
+            shadowColor={PURPLE}
+            shadowBlur={20}
           />
-          <Img src={`/asset/${step.icon}.png`} width={() => stepScales[i]() * 35} height={() => stepScales[i]() * 35} y={-8} />
-          <Txt text={step.label} fontSize={14} fontWeight={600} fill={WHITE} y={22} opacity={() => stepScales[i]()} />
+          <Img
+            src={`/asset/${step.icon}.png`}
+            width={() => stepScales[i]() * 100}
+            height={() => stepScales[i]() * 100}
+            y={-20}
+          />
+          <Txt
+            text={step.label}
+            fontSize={36}
+            fontWeight={600}
+            fill={WHITE}
+            y={65}
+            opacity={() => stepScales[i]()}
+          />
         </Node>
       ))}
 
-      {/* Arrows between steps */}
+      {/* Arrows between steps - BIGGER */}
       {[0, 1, 2].map((i) => (
         <Line
           key={`arrow-${i}`}
           stroke={CYAN}
-          lineWidth={2}
+          lineWidth={6}
           endArrow
-          arrowSize={8}
+          arrowSize={20}
           opacity={() => arrowOpacities[i]()}
-          points={[new Vector2(-280, -125 + i * 100), new Vector2(-280, -95 + i * 100)]}
+          points={[
+            new Vector2(-320, -240 + i * 220),
+            new Vector2(-320, -160 + i * 220),
+          ]}
         />
       ))}
 
-      {/* Domain box */}
-      <Node x={150} y={-120}>
-        <Rect width={() => domainScale() * 180} height={() => domainScale() * 50} fill={'#1a2a4a'} stroke={CYAN} lineWidth={2} radius={10} />
-        <Txt ref={domainText} text={''} fontSize={18} fontWeight={700} fontFamily={'monospace'} fill={CYAN} />
+      {/* Domain box - MUCH BIGGER */}
+      <Node x={280} y={-350}>
+        <Rect
+          width={() => domainScale() * 480}
+          height={() => domainScale() * 120}
+          fill={"#1a2a4a"}
+          stroke={CYAN}
+          lineWidth={6}
+          radius={22}
+          shadowColor={CYAN}
+          shadowBlur={25}
+        />
+        <Txt
+          ref={domainText}
+          text={""}
+          fontSize={48}
+          fontWeight={700}
+          fontFamily={"monospace"}
+          fill={CYAN}
+        />
       </Node>
 
-      {/* DNS icon */}
-      <Img src={'/asset/dns.png'} width={() => dnsScale() * 60} height={() => dnsScale() * 60} x={150} y={0} />
-
-      {/* Arrow */}
-      <Line
-        stroke={YELLOW}
-        lineWidth={4}
-        lineDash={[8, 4]}
-        endArrow
-        arrowSize={12}
-        opacity={() => arrowOpacity()}
-        points={[new Vector2(150, -80), new Vector2(150, 60)]}
+      {/* DNS icon - MUCH BIGGER */}
+      <Img
+        src={"/asset/dns.png"}
+        width={() => dnsScale() * 160}
+        height={() => dnsScale() * 160}
+        x={280}
+        y={-50}
       />
 
-      {/* IP box */}
-      <Node x={150} y={120}>
-        <Rect width={() => ipScale() * 180} height={() => ipScale() * 50} fill={'#2a1a1a'} stroke={ORANGE} lineWidth={2} radius={10} />
-        <Txt ref={ipText} text={''} fontSize={18} fontWeight={700} fontFamily={'monospace'} fill={ORANGE} />
+      {/* Arrow from domain to DNS - repositioned */}
+      <Line
+        stroke={YELLOW}
+        lineWidth={8}
+        lineDash={[18, 9]}
+        endArrow
+        arrowSize={24}
+        opacity={() => arrowOpacity()}
+        points={[new Vector2(280, -270), new Vector2(280, -150)]}
+      />
+
+      {/* Arrow from DNS to IP */}
+      <Line
+        stroke={YELLOW}
+        lineWidth={8}
+        lineDash={[18, 9]}
+        endArrow
+        arrowSize={24}
+        opacity={() => arrowOpacity()}
+        points={[new Vector2(280, 50), new Vector2(280, 170)]}
+      />
+
+      {/* IP box - MUCH BIGGER */}
+      <Node x={280} y={280}>
+        <Rect
+          width={() => ipScale() * 480}
+          height={() => ipScale() * 120}
+          fill={"#2a1a1a"}
+          stroke={ORANGE}
+          lineWidth={6}
+          radius={22}
+          shadowColor={ORANGE}
+          shadowBlur={25}
+        />
+        <Txt
+          ref={ipText}
+          text={""}
+          fontSize={48}
+          fontWeight={700}
+          fontFamily={"monospace"}
+          fill={ORANGE}
+        />
       </Node>
     </Camera>
   );
 
-  // Animation
-  yield* titleOpacity(1, 0.4);
+  // Animation - MUCH LONGER
+  yield* titleOpacity(1, 0.8);
+  yield* waitFor(0.6);
 
-  // Show steps
+  // Show steps with longer delays and bounce
   for (let i = 0; i < steps.length; i++) {
-    yield* stepScales[i](1, 0.2, easeOutCubic);
-    if (i < 3) yield* arrowOpacities[i](1, 0.1);
+    yield* stepScales[i](1, 0.4, easeOutBounce);
+    if (i < 3) {
+      yield* waitFor(0.15);
+      yield* arrowOpacities[i](1, 0.3);
+    }
+    yield* waitFor(0.3);
   }
 
+  yield* waitFor(0.8);
+
+  // Pulse steps to emphasize the flow
+  for (let i = 0; i < steps.length; i++) {
+    yield* stepScales[i](1.15, 0.2, easeOutCubic);
+    yield* stepScales[i](1, 0.2, easeOutCubic);
+    yield* waitFor(0.15);
+  }
+
+  yield* waitFor(0.6);
+
+  // Domain - slower typewriter
+  yield* domainScale(1, 0.5, easeOutBounce);
   yield* waitFor(0.3);
 
-  // Domain
-  yield* domainScale(1, 0.3, easeOutCubic);
   for (let i = 0; i <= 10; i++) {
-    domainText().text('google.com'.slice(0, i));
-    yield* waitFor(0.03);
+    domainText().text("google.com".slice(0, i));
+    yield* waitFor(0.07);
   }
 
-  yield* dnsScale(1, 0.4, easeOutCubic);
-  yield* arrowOpacity(1, 0.3);
+  yield* waitFor(0.8);
 
-  yield* dnsScale(1.15, 0.15);
-  yield* dnsScale(1, 0.15);
+  // DNS processing
+  yield* dnsScale(1, 0.6, easeOutBounce);
+  yield* waitFor(0.3);
 
-  yield* ipScale(1, 0.3, easeOutCubic);
+  yield* arrowOpacity(1, 0.5);
+  yield* waitFor(0.3);
 
-  // Type IP
-  for (let i = 0; i <= 14; i++) {
-    ipText().text('142.250.72.14'.slice(0, i));
-    yield* waitFor(0.02);
+  // DNS pulse - processing animation
+  for (let i = 0; i < 3; i++) {
+    yield* dnsScale(1.25, 0.25, easeOutCubic);
+    yield* dnsScale(1, 0.25, easeOutCubic);
+    yield* waitFor(0.1);
   }
 
   yield* waitFor(0.5);
 
-  // Exit
+  // IP appears
+  yield* ipScale(1, 0.5, easeOutBounce);
+  yield* waitFor(0.3);
+
+  // Type IP - slower
+  for (let i = 0; i <= 14; i++) {
+    ipText().text("142.250.72.14".slice(0, i));
+    yield* waitFor(0.06);
+  }
+
+  yield* waitFor(0.5);
+
+  // Pulse IP to emphasize result
+  yield* ipScale(1.15, 0.3, easeOutCubic);
+  yield* ipScale(1, 0.3, easeOutCubic);
+
+  yield* waitFor(1.5);
+
+  // Exit - slower
   yield* all(
-    camera().zoom(0.5, 0.5),
-    titleOpacity(0, 0.3),
-    ...stepScales.map(s => s(0, 0.3)),
-    ...arrowOpacities.map(o => o(0, 0.3)),
-    domainScale(0, 0.3),
-    dnsScale(0, 0.3),
-    arrowOpacity(0, 0.3),
-    ipScale(0, 0.3),
-    domainText().opacity(0, 0.3),
-    ipText().opacity(0, 0.3)
+    camera().zoom(0.5, 0.7),
+    titleOpacity(0, 0.5),
+    ...stepScales.map((s) => s(0, 0.5)),
+    ...arrowOpacities.map((o) => o(0, 0.5)),
+    domainScale(0, 0.5),
+    dnsScale(0, 0.5),
+    arrowOpacity(0, 0.5),
+    ipScale(0, 0.5),
+    domainText().opacity(0, 0.5),
+    ipText().opacity(0, 0.5)
   );
 });

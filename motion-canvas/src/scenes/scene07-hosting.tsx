@@ -1,16 +1,34 @@
-import {makeScene2D, Camera, Circle, Grid, Line, Node, Rect, Txt, Img} from '@motion-canvas/2d';
-import {Vector2, all, createRef, createSignal, waitFor, easeOutCubic, easeInOutCubic} from '@motion-canvas/core';
+import {
+  makeScene2D,
+  Camera,
+  Grid,
+  Line,
+  Node,
+  Rect,
+  Txt,
+  Img,
+} from "@motion-canvas/2d";
+import {
+  Vector2,
+  all,
+  createRef,
+  createSignal,
+  waitFor,
+  easeOutCubic,
+  easeInOutCubic,
+  easeOutBounce,
+} from "@motion-canvas/core";
 
-const CYAN = '#00d4ff';
-const GREEN = '#00ff88';
-const RED = '#ff6b6b';
-const TEAL = '#4ecdc4';
-const YELLOW = '#ffd93d';
-const PINK = '#ff66aa';
-const ORANGE = '#ffaa00';
-const PURPLE = '#a29bfe';
-const WHITE = '#ffffff';
-const DARK = '#0a0a1a';
+const CYAN = "#00d4ff";
+const GREEN = "#00ff88";
+const RED = "#ff6b6b";
+const TEAL = "#4ecdc4";
+const YELLOW = "#ffd93d";
+const PINK = "#ff66aa";
+const ORANGE = "#ffaa00";
+const PURPLE = "#a29bfe";
+const WHITE = "#ffffff";
+const DARK = "#0a0a1a";
 
 export default makeScene2D(function* (view) {
   view.fill(DARK);
@@ -19,235 +37,313 @@ export default makeScene2D(function* (view) {
   const titleOpacity = createSignal(0);
   const title = createRef<Txt>();
 
-  const serverScale = createSignal(0);
-  const slotScales = [0, 1, 2, 3, 4].map(() => createSignal(0));
-  const serverLabel = createRef<Txt>();
+  // Refs for position animations
+  const serverNode = createRef<Node>();
+  const userNode = createRef<Node>();
+  const fileNodes = [
+    createRef<Node>(),
+    createRef<Node>(),
+    createRef<Node>(),
+    createRef<Node>(),
+  ];
+  const hostingNodes = [
+    createRef<Node>(),
+    createRef<Node>(),
+    createRef<Node>(),
+    createRef<Node>(),
+  ];
+
+  const serverOpacity = createSignal(0);
+  const userOpacity = createSignal(0);
+  const fileOpacities = [
+    createSignal(0),
+    createSignal(0),
+    createSignal(0),
+    createSignal(0),
+  ];
+  const hostingOpacities = [
+    createSignal(0),
+    createSignal(0),
+    createSignal(0),
+    createSignal(0),
+  ];
+  const arrowProgress = createSignal(0);
 
   const files = [
-    {type: 'HTML', color: RED, icon: 'code'},
-    {type: 'CSS', color: TEAL, icon: 'script'},
-    {type: 'JS', color: YELLOW, icon: 'script'},
-    {type: 'Images', color: PURPLE, icon: 'binary-code'},
+    { type: "HTML", color: RED, icon: "code" },
+    { type: "CSS", color: TEAL, icon: "script" },
+    { type: "JS", color: YELLOW, icon: "script" },
+    { type: "IMG", color: PURPLE, icon: "binary-code" },
   ];
-  const fileScales = files.map(() => createSignal(0));
-  const lineOpacities = files.map(() => createSignal(0));
 
   const hostingTypes = [
-    {name: 'Shared', color: CYAN},
-    {name: 'VPS', color: GREEN},
-    {name: 'Cloud', color: PINK},
-    {name: 'Dedicated', color: ORANGE},
+    { name: "Shared", color: CYAN },
+    { name: "VPS", color: GREEN },
+    { name: "Cloud", color: PINK },
+    { name: "Dedicated", color: ORANGE },
   ];
-  const hostingScales = hostingTypes.map(() => createSignal(0));
+
+  // File starting positions (inside server area - centered)
+  const fileStartX = [-150, -50, 50, 150];
+  const fileStartY = [200, 200, 200, 200];
+  // File end positions (spread out middle - keep within screen bounds)
+  const fileEndX = [-270, -90, 90, 270];
+  const fileEndY = [200, 200, 200, 200];
 
   view.add(
     <Camera ref={camera}>
-      {/* Grid background */}
       <Grid
-        width={3000}
-        height={2000}
+        width={1080}
+        height={1920}
         spacing={60}
-        stroke={'#1a1a2e'}
+        stroke={"#1a1a2e"}
         lineWidth={1}
       />
 
       {/* Title */}
       <Txt
         ref={title}
-        text={'WEB HOSTING'}
-        fontSize={56}
+        text={"WEB HOSTING"}
+        fontSize={80}
         fontWeight={800}
         fill={WHITE}
-        y={-380}
+        y={-800}
         opacity={() => titleOpacity()}
         shadowColor={GREEN}
-        shadowBlur={15}
+        shadowBlur={25}
       />
 
-      {/* Server rack (left side) */}
-      <Node x={-250}>
+      {/* Subtitle */}
+      <Txt
+        text={"Files stored on servers"}
+        fontSize={38}
+        fontWeight={500}
+        fill={"#88aaff"}
+        y={-720}
+        opacity={() => titleOpacity()}
+      />
+
+      {/* SERVER BOX */}
+      <Node ref={serverNode} y={-380}>
         <Rect
-          width={() => serverScale() * 180}
-          height={() => serverScale() * 280}
-          fill={'#0d1a2a'}
+          width={500}
+          height={420}
+          fill={"#0d1a2a"}
           stroke={GREEN}
-          lineWidth={3}
-          radius={15}
-          y={20}
+          lineWidth={6}
+          radius={28}
+          shadowColor={GREEN}
+          shadowBlur={30}
+          opacity={() => serverOpacity()}
         />
         <Img
-          src={'/asset/cloud-server.png'}
-          width={() => serverScale() * 60}
-          height={() => serverScale() * 60}
+          src={"/asset/cloud-server.png"}
+          width={140}
+          height={140}
           y={-100}
+          opacity={() => serverOpacity()}
+        />
+        <Txt
+          text={"SERVER"}
+          fontSize={44}
+          fontWeight={700}
+          fill={GREEN}
+          y={80}
+          opacity={() => serverOpacity()}
         />
       </Node>
 
-      {/* Server slots */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <Node key={`slot-${i}`} x={-250} y={-30 + i * 50}>
+      {/* File boxes - each at their own starting position */}
+      {files.map((file, i) => (
+        <Node
+          key={`file-${i}`}
+          ref={fileNodes[i]}
+          x={fileStartX[i]}
+          y={fileStartY[i]}
+        >
           <Rect
-            width={() => slotScales[i]() * 140}
-            height={() => slotScales[i]() * 38}
-            fill={'#1a2a4a'}
-            stroke={'#334466'}
-            lineWidth={1}
-            radius={5}
+            width={150}
+            height={130}
+            fill={"#1a1a3a"}
+            stroke={file.color}
+            lineWidth={5}
+            radius={18}
+            shadowColor={file.color}
+            shadowBlur={16}
+            opacity={() => fileOpacities[i]()}
           />
-          <Circle
-            width={() => slotScales[i]() * 10}
-            height={() => slotScales[i]() * 10}
-            fill={GREEN}
-            x={() => -55 * slotScales[i]()}
+          <Img
+            src={`/asset/${file.icon}.png`}
+            width={55}
+            height={55}
+            y={-18}
+            opacity={() => fileOpacities[i]()}
+          />
+          <Txt
+            text={file.type}
+            fontSize={26}
+            fontWeight={700}
+            fill={file.color}
+            y={42}
+            opacity={() => fileOpacities[i]()}
           />
         </Node>
       ))}
 
-      {/* Server label */}
-      <Txt
-        ref={serverLabel}
-        text={'SERVER'}
-        fontSize={20}
-        fontWeight={600}
-        fill={GREEN}
-        x={-250}
-        y={200}
-        opacity={0}
+      {/* Arrow showing data flow */}
+      <Line
+        stroke={GREEN}
+        lineWidth={8}
+        lineDash={[25, 12]}
+        endArrow
+        arrowSize={32}
+        end={() => arrowProgress()}
+        points={[new Vector2(0, -100), new Vector2(0, 380)]}
       />
 
-      {/* Connection lines and file boxes */}
-      {files.map((file, i) => {
-        const row = Math.floor(i / 2);
-        const col = i % 2;
-        const x = 100 + col * 130;
-        const y = -80 + row * 130;
+      {/* USER BOX */}
+      <Node ref={userNode} y={520}>
+        <Rect
+          width={420}
+          height={220}
+          fill={"#1a2a4a"}
+          stroke={CYAN}
+          lineWidth={6}
+          radius={28}
+          shadowColor={CYAN}
+          shadowBlur={30}
+          opacity={() => userOpacity()}
+        />
+        <Img
+          src={"/asset/browser.png"}
+          width={100}
+          height={100}
+          y={-30}
+          opacity={() => userOpacity()}
+        />
+        <Txt
+          text={"USER"}
+          fontSize={40}
+          fontWeight={700}
+          fill={CYAN}
+          y={70}
+          opacity={() => userOpacity()}
+        />
+      </Node>
 
-        return (
-          <Node key={`file-${i}`}>
-            <Line
-              stroke={GREEN}
-              lineWidth={2}
-              lineDash={[8, 4]}
-              opacity={() => lineOpacities[i]()}
-              points={[
-                new Vector2(-160, -30 + i * 50),
-                new Vector2(x - 55, y),
-              ]}
-            />
-            <Node x={x} y={y}>
-              <Rect
-                width={() => fileScales[i]() * 100}
-                height={() => fileScales[i]() * 85}
-                fill={'#1a1a3a'}
-                stroke={file.color}
-                lineWidth={3}
-                radius={12}
-              />
-              <Img
-                src={`/asset/${file.icon}.png`}
-                width={() => fileScales[i]() * 35}
-                height={() => fileScales[i]() * 35}
-                y={-12}
-              />
-              <Txt
-                text={file.type}
-                fontSize={16}
-                fontWeight={700}
-                fill={file.color}
-                y={25}
-                opacity={() => fileScales[i]()}
-              />
-            </Node>
-          </Node>
-        );
-      })}
-
-      {/* Hosting types (bottom) */}
+      {/* Hosting types - in a row at bottom */}
       {hostingTypes.map((hosting, i) => (
-        <Node key={`hosting-${i}`} x={-280 + i * 160} y={330}>
+        <Node
+          key={`hosting-${i}`}
+          ref={hostingNodes[i]}
+          x={-220 + i * 150}
+          y={780}
+        >
           <Rect
-            width={() => hostingScales[i]() * 130}
-            height={() => hostingScales[i]() * 55}
-            fill={'#1a1a2e'}
+            width={175}
+            height={85}
+            fill={"#1a1a2e"}
             stroke={hosting.color}
-            lineWidth={2}
-            radius={10}
+            lineWidth={4}
+            radius={16}
+            shadowColor={hosting.color}
+            shadowBlur={14}
+            opacity={() => hostingOpacities[i]()}
           />
           <Txt
             text={hosting.name}
-            fontSize={18}
+            fontSize={28}
             fontWeight={700}
             fill={hosting.color}
-            opacity={() => hostingScales[i]()}
+            opacity={() => hostingOpacities[i]()}
           />
         </Node>
       ))}
     </Camera>
   );
 
-  // Animation sequence
-  
-  // Start zoomed out, zoom in
-  camera().zoom(0.7);
-  yield* all(
-    camera().zoom(1, 0.5, easeOutCubic),
-    titleOpacity(1, 0.4)
-  );
+  // ===== ANIMATION =====
 
-  // Show server rack
-  yield* serverScale(1, 0.4, easeOutCubic);
+  // Title fades in
+  yield* titleOpacity(1, 0.6);
+  yield* waitFor(0.4);
 
-  // Server slots light up (no camera following)
-  for (let i = 0; i < 5; i++) {
-    yield* slotScales[i](1, 0.08, easeOutCubic);
+  // Server appears
+  yield* serverOpacity(1, 0.5, easeOutCubic);
+  yield* waitFor(0.3);
+
+  // Files appear inside server (they're already positioned there)
+  for (let i = 0; i < files.length; i++) {
+    yield* fileOpacities[i](1, 0.25, easeOutCubic);
   }
 
-  yield* serverLabel().opacity(1, 0.3);
-
-  yield* waitFor(0.2);
+  yield* waitFor(0.5);
 
   // Update title
-  yield* title().text('FILES STORED', 0.3);
+  yield* title().text("DATA TRANSFER", 0.4);
 
-  // File boxes appear together
-  yield* all(
-    ...fileScales.map((s, i) => s(1, 0.3, easeOutCubic)),
-    ...lineOpacities.map((o, i) => o(0.5, 0.3))
-  );
+  yield* waitFor(0.3);
 
-  // Pulse files
+  // User appears
+  yield* userOpacity(1, 0.5, easeOutCubic);
+
+  yield* waitFor(0.3);
+
+  // Arrow draws
+  yield* arrowProgress(1, 0.6);
+
+  yield* waitFor(0.4);
+
+  // Files move from server to middle (showing transfer)
   yield* all(
-    ...fileScales.map(s => s(1.1, 0.15))
-  );
-  yield* all(
-    ...fileScales.map(s => s(1, 0.15))
+    fileNodes[0]().position.x(fileEndX[0], 0.6, easeOutCubic),
+    fileNodes[0]().position.y(fileEndY[0], 0.6, easeOutCubic),
+    fileNodes[1]().position.x(fileEndX[1], 0.6, easeOutCubic),
+    fileNodes[1]().position.y(fileEndY[1], 0.6, easeOutCubic),
+    fileNodes[2]().position.x(fileEndX[2], 0.6, easeOutCubic),
+    fileNodes[2]().position.y(fileEndY[2], 0.6, easeOutCubic),
+    fileNodes[3]().position.x(fileEndX[3], 0.6, easeOutCubic),
+    fileNodes[3]().position.y(fileEndY[3], 0.6, easeOutCubic)
   );
 
   yield* waitFor(0.3);
 
-  // Show hosting types
-  yield* title().text('HOSTING TYPES', 0.3);
-
-  // Hosting types appear together
+  // Files continue to user
   yield* all(
-    ...hostingScales.map((s, i) => s(1, 0.3, easeOutCubic))
+    ...fileNodes.map((n) => n().position.y(520, 0.5, easeInOutCubic)),
+    ...fileOpacities.map((o) => o(0, 0.5))
   );
 
-  // Highlight cloud hosting
-  yield* hostingScales[2](1.15, 0.2);
-  yield* hostingScales[2](1, 0.2);
+  // Pulse user to show received
+  yield* userOpacity(1.2, 0.2);
+  yield* userOpacity(1, 0.2);
 
-  yield* waitFor(0.5);
+  yield* waitFor(0.6);
 
-  // Exit with zoom out
+  // Update title
+  yield* title().text("HOSTING TYPES", 0.4);
+
+  yield* waitFor(0.4);
+
+  // Hosting types appear
+  for (let i = 0; i < hostingTypes.length; i++) {
+    yield* hostingOpacities[i](1, 0.3, easeOutCubic);
+    yield* waitFor(0.1);
+  }
+
+  // Highlight Cloud
+  yield* hostingNodes[2]().position.y(760, 0.2);
+  yield* hostingNodes[2]().position.y(780, 0.2);
+
+  yield* waitFor(1.5);
+
+  // Exit
   yield* all(
-    camera().zoom(0.5, 0.5, easeInOutCubic),
-    titleOpacity(0, 0.3),
-    serverScale(0, 0.3),
-    serverLabel().opacity(0, 0.3),
-    ...slotScales.map(s => s(0, 0.3)),
-    ...fileScales.map(s => s(0, 0.3)),
-    ...lineOpacities.map(o => o(0, 0.3)),
-    ...hostingScales.map(s => s(0, 0.3))
+    camera().zoom(0.7, 0.6, easeInOutCubic),
+    titleOpacity(0, 0.4),
+    serverOpacity(0, 0.4),
+    userOpacity(0, 0.4),
+    arrowProgress(0, 0.4),
+    ...hostingOpacities.map((o) => o(0, 0.4))
   );
 });
